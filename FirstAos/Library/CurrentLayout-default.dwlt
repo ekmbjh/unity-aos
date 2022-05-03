@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1904
     height: 981
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,10 +119,10 @@ MonoBehaviour:
     y: 30
     width: 1904
     height: 931
-  m_MinSize: {x: 678, y: 492}
-  m_MaxSize: {x: 14001, y: 14042}
+  m_MinSize: {x: 679, y: 492}
+  m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 37
+  controlID: 18
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 38
+  controlID: 69
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 39
+  controlID: 70
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 0
     width: 401
     height: 660
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -275,8 +275,8 @@ MonoBehaviour:
     y: 0
     width: 556
     height: 931
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
@@ -401,21 +401,21 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 8cf6ffff6efbffff
+      m_ExpandedIDs: 6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Plane
-        m_OriginalName: Plane
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 15718
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -512,11 +512,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.40519077, y: 0.02193355, z: -0.009725716, w: 0.9139277}
     speed: 2
-    m_Value: {x: 0.40381557, y: 0.021947905, z: -0.009692712, w: 0.91452575}
+    m_Value: {x: -0.4051908, y: -0.02193355, z: 0.009725716, w: -0.9139277}
   m_Size:
     m_Target: 10.792429
     speed: 2
-    m_Value: 11.300973
+    m_Value: 10.792429
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -607,11 +607,11 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 21
+      y: 0
       width: 945
-      height: 618
+      height: 639
     m_Scale: {x: 0.4921875, y: 0.4921875}
-    m_Translation: {x: 472.5, y: 309}
+    m_Translation: {x: 472.5, y: 319.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -619,9 +619,9 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -960
-      y: -627.8095
+      y: -649.1429
       width: 1920
-      height: 1255.619
+      height: 1298.2858
     m_MinimalGUI: 1
   m_defaultScale: 0.4921875
   m_LastWindowPixelSize: {x: 945, y: 639}
@@ -737,14 +737,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\jhProject\test0503
+  m_LastProjectPath: C:\Users\YONSAI\Documents\GitHub\unity-aos\FirstAos
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ac3d0000
-    m_LastClickedID: 15788
-    m_ExpandedIDs: 00000000ac3d000000ca9a3b
+    m_SelectedIDs: c23d0000
+    m_LastClickedID: 15810
+    m_ExpandedIDs: 00000000c23d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -772,7 +772,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ac3d0000
+    m_ExpandedIDs: 00000000c23d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
