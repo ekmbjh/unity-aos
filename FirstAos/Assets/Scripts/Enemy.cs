@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
     public float speed = 5f;
     public Transform target;
     private int wavepointIndex = 0;
+
+    public float health = 100f;
+    private float damage = 10f;
+    public GameObject player;
     //NavMeshAgent agent;
 
     void Awake()
@@ -35,6 +39,13 @@ public class Enemy : MonoBehaviour
             GetNextWayPoint();
         }
         //agent.SetDestination(target.position);
+
+        
+        if (Physics.SphereCast(transform.position, 5f, Vector3.up, out RaycastHit hitinfo, 1f, LayerMask.GetMask("Player")))
+        {
+            //AttackToPlayer();
+            Debug.Log("Find Player");
+        }
     }
 
     void GetNextWayPoint()
@@ -51,5 +62,15 @@ public class Enemy : MonoBehaviour
         wavepointIndex++;
         // 증가된 Index를 활용하여 target에 다음 목표 할당
         target = Waypoint.points[wavepointIndex];
+    }
+
+    //void AttackToPlayer()
+    //{
+    //    PlayerStats.OnDamage(damage);
+    //}
+
+    public void OnDamage(float playerDamage)
+    {
+        health -= playerDamage;
     }
 }

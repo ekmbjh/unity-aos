@@ -33,6 +33,11 @@ public class Bullet : MonoBehaviour
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
         transform.LookAt(target);
+
+        if (Vector3.Distance(transform.position, target.position) < 2.5f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     //void HitTarget()

@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
         speed = 4f;
         camera = Camera.main;
         controller = GetComponent<CharacterController>();
+        movePoint = transform.position;
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin, movePoint * 10f, Color.red, 1f);
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
@@ -41,7 +42,6 @@ public class Movement : MonoBehaviour
         {
             Move();
         }
-
     }
 
     void Move()

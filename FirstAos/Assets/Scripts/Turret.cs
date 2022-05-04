@@ -12,7 +12,6 @@ public class Turret : MonoBehaviour
 
     [Header("Bullet & Laser")]
     public GameObject bulletPrefab;
-    public float fireRate = 1f;
     private float fireCountdown = 0f;
     public LineRenderer lineRenderer;
 
@@ -64,7 +63,7 @@ public class Turret : MonoBehaviour
         if (fireCountdown <= 0f)
         {
             Shoot();
-            fireCountdown = 3f;
+            fireCountdown = 2f;
         }
         fireCountdown -= Time.deltaTime;
         //LockOnTarget();

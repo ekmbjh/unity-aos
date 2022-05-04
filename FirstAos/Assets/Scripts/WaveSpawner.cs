@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     public Transform enemyPrefab;
+    public Transform enemyPrefab2;
 
     public Transform spawnPoint;
 
@@ -26,9 +27,15 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             SpawnEnemy();
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        for (int j = 0; j < 2; j++)
+        {
+            SpawnEnemy2();
             yield return new WaitForSeconds(0.5f);
         }
         //waveIndex++;
@@ -37,5 +44,10 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+    }
+
+    void SpawnEnemy2()
+    {
+        Instantiate(enemyPrefab2, spawnPoint.position, spawnPoint.rotation);
     }
 }
