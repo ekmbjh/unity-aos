@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2248210439973290729}
   - component: {fileID: 7236641509839832663}
   - component: {fileID: 2780899998640294497}
-  - component: {fileID: 5811976170926758269}
+  - component: {fileID: 2572551193630605626}
   m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
@@ -4813,7 +4813,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &5811976170926758269
+--- !u!114 &2572551193630605626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4826,4 +4826,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 70
+  speed: 7
