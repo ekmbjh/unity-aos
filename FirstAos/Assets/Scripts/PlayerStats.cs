@@ -9,11 +9,13 @@ public class PlayerStats : MonoBehaviour
     Camera cam;
     private Vector3 attackRange;
     string enemyTag = "Enemy";
+    public static Transform myposition;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
+        myposition = this.transform;
     }
 
     // Update is called once per frame
