@@ -16,19 +16,16 @@ public class Enemy : MonoBehaviour
     private float attackCntDown;
     public float attackRange;
 
-    void Awake()
-    {
-        player = PlayerStats.myposition;
-    }
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         // Waypoint.cs 에서 할당한 배열을 불러와서 target에 할당
         target = Waypoint.points[0];
+        player = PlayerStats.myposition;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (!isChase)
         {
@@ -50,7 +47,7 @@ public class Enemy : MonoBehaviour
         {
             isChase = true;
         }
-        
+
     }
 
     void OnTriggerExit(Collider other)
@@ -78,8 +75,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void AttackPlayer()
+    public virtual void AttackPlayer()
     {
+        PlayerStats playerHealth = player.GetComponent<PlayerStats>();
+        playerHealth.health -= damage;
         Debug.Log("Attack Player");
     }
 

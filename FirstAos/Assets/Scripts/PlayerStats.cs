@@ -14,11 +14,15 @@ public class PlayerStats : MonoBehaviour
 
     private float attackCntDown;
 
+
+    void Awake()
+    {
+        myposition = this.transform;
+    }
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
-        myposition = this.transform;
     }
 
     // Update is called once per frame
