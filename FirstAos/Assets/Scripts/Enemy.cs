@@ -13,16 +13,18 @@ public class Enemy : MonoBehaviour
     private float damage = 10f;
     public Transform player;
     public bool isChase = false;
+    private float attackCntDown;
+    public float attackRange;
 
     void Awake()
     {
+        player = PlayerStats.myposition;
     }
     // Start is called before the first frame update
     void Start()
     {
         // Waypoint.cs 에서 할당한 배열을 불러와서 target에 할당
         target = Waypoint.points[0];
-        player = PlayerStats.myposition;
     }
 
     // Update is called once per frame
@@ -36,16 +38,20 @@ public class Enemy : MonoBehaviour
         {
             MoveToPlayer();
         }
+        attackCntDown -= Time.deltaTime;
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Enter");
+    }
+
+    void OnTriggerStay(Collider other)
+    {
         if (other.transform.tag == "Player")
         {
             isChase = true;
         }
+        
     }
-
 
     void OnTriggerExit(Collider other)
     {
@@ -55,16 +61,21 @@ public class Enemy : MonoBehaviour
 
     void MoveToPlayer()
     {
-        Debug.Log("Move to Player");
-
         target = player.transform;
-        Debug.Log(target);
         Vector3 direction = target.transform.position - transform.position;
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
-        //if (Vector3.Distance(player.transform.position, transform.position) <= 0.4f)
-        //{
-        //    AttackPlayer();
-        //}
+        if (Vector3.Distance(target.position, transform.position) <= attackRange)
+        {
+            if (attackCntDown <= 0f)
+            {
+                AttackPlayer();
+                attackCntDown = 2f;
+            }
+        }
+        else
+        {
+            transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+
+        }
     }
 
     void AttackPlayer()

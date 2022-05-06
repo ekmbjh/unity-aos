@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 4f;
+        speed = 10f;
         camera = Camera.main;
         controller = GetComponent<CharacterController>();
         movePoint = transform.position;
@@ -48,7 +48,7 @@ public class Movement : MonoBehaviour
     {
 
         Vector3 updateMovePoint = (movePoint - transform.position).normalized * speed;
-
+        //transform.Translate(updateMovePoint.normalized * speed * Time.deltaTime, Space.World);
         controller.SimpleMove(updateMovePoint);
     }
 }
