@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
 
     public GameObject bullet;
     public GameObject firePosition;
+    public GameObject[] enemies;
+    public Queue<Transform> blueQueue = new Queue<Transform>();
+    public Queue<Transform> redQueue = new Queue<Transform>();
 
     // Start is called before the first frame update
     public void Start()
@@ -43,7 +46,6 @@ public class Enemy : MonoBehaviour
         }
         if (!isChase)
         {
-            print("follow the load");
             FollowTheLoad();
         }
         else
@@ -53,30 +55,30 @@ public class Enemy : MonoBehaviour
         }
         attackCntDown -= Time.deltaTime;
     }
-    void OnTriggerEnter(Collider other)
-    {
-    }
+    //void OnTriggerEnter(Collider other)
+    //{
+    //}
 
-    void OnTriggerStay(Collider other)
-    {
-        if (other.transform.tag == "Player")
-        {
-            isChase = true;
-        }
+    //void OnTriggerStay(Collider other)
+    //{
+    //    if (other.transform.tag == "Player")
+    //    {
+    //        isChase = true;
+    //    }
 
-    }
+    //}
 
     //void OnTriggerExit(Collider other)
     //{
-    //    isChase = false;
-    //    if (transform.tag == "RedAd" || transform.tag == "RedAp" || transform.tag == "RedCanon")
-    //    {
-    //        target = Waypoint.points[wavepointIndex];
-    //    }
-    //    else if (transform.tag == "BlueAd" || transform.tag == "BlueAp" || transform.tag == "BlueCanon")
-    //    {
-    //        target = WaypointBlue.bluePoints[wavepointIndex];
-    //    }
+    //    //isChase = false;
+    //    //if (transform.tag == "RedAd" || transform.tag == "RedAp" || transform.tag == "RedCanon")
+    //    //{
+    //    //    target = Waypoint.points[wavepointIndex];
+    //    //}
+    //    //else if (transform.tag == "BlueAd" || transform.tag == "BlueAp" || transform.tag == "BlueCanon")
+    //    //{
+    //    //    target = WaypointBlue.bluePoints[wavepointIndex];
+    //    //}
     //}
 
     void MoveToPlayer()

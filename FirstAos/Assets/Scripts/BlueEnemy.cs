@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class BlueEnemy : Enemy
 {
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "RedAd" || other.tag == "RedAp" || other.tag == "RedCanon")
         {
             isChase = true;
-            print("find red");
-            target = other.transform;
+            blueQueue.Enqueue(other.transform);
+            //target = other.transform;
+            if (target == null)
+            {
+                target = blueQueue.Dequeue();
+                return;
+            }
         }
     }
+    void OnTriggerStay(Collider other)
+    {
+    }
+
 }

@@ -598,10 +598,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6db6c55c95bfbc34eb3e422fa1d0dfd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adEnemyPrefab: {fileID: 6005300442713200586, guid: b609219727eb2734691e3f435f0fc6ec, type: 3}
+  adEnemyPrefab: {fileID: 7085792381161384228, guid: e7c087c575b377542805898ba7190541, type: 3}
   apEnemyPrefab: {fileID: 8301669476640809197, guid: ca0b5cfedc6743540af8508b08b8098c, type: 3}
   canonEnemyPrefab: {fileID: 939366990811539428, guid: 22ca06fc7effaff499e41430b3ad9de5, type: 3}
-  adEnemyPrefabBlue: {fileID: 6005300442713200586, guid: 51e89a7e6b5352b4f86371c768e121b5, type: 3}
+  adEnemyPrefabBlue: {fileID: 2082081848869558278, guid: 24bb4519f3147654a974cbc4676279d9, type: 3}
   apEnemyPrefabBlue: {fileID: 8301669476640809197, guid: e6e54c80db473be4eb012f79ed157bfc, type: 3}
   canonEnemyPrefabBlue: {fileID: 939366990811539428, guid: ffbf46147fe76a4489d0f5ea62902f52, type: 3}
   redTeamSpawnPoint: {fileID: 810132234}
