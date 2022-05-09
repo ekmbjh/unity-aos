@@ -16,7 +16,7 @@ public class Turret : MonoBehaviour
     public LineRenderer lineRenderer;
 
     [Header("Unity Setip Field")]
-    public string enemyTag = "Enemy";
+    public string enemyTag = "AdEnemy";
     public Transform firePoint;
     // Start is called before the first frame update
     void Start()

@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
 
     public void Seek(Transform _target)
     {
+        Debug.Log("≈∏∞Ÿ»Æ¿Œ");
         target = _target;
     }
 

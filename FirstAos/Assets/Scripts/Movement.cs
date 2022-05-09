@@ -35,7 +35,8 @@ public class Movement : MonoBehaviour
         if (movePoint != null)
         {
             Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
+            if(dir!= Vector3.zero)
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
         }
 
         if (Vector3.Distance(transform.position, movePoint) > 0.1f)

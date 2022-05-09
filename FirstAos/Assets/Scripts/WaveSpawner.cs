@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
-    public Transform enemyPrefab2;
+    public Transform adEnemyPrefab;
+    public Transform apEnemyPrefab;
+    public Transform canonEnemyPrefab;
+    public Transform adEnemyPrefabBlue;
+    public Transform apEnemyPrefabBlue;
+    public Transform canonEnemyPrefabBlue;
 
-    public Transform spawnPoint;
+    public Transform redTeamSpawnPoint;
+    public Transform blueTeamSpawnPoint;
 
     //public float timeBetweenWaves = 5f;
     private float countdown = 2f;
@@ -29,25 +34,39 @@ public class WaveSpawner : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(0.5f);
+            SpawnAdEnemy();
+            yield return new WaitForSeconds(0.8f);
         }
 
         for (int j = 0; j < 2; j++)
         {
-            SpawnEnemy2();
-            yield return new WaitForSeconds(0.5f);
+            SpawnApEnemy();
+            yield return new WaitForSeconds(1f);
+        }
+
+        for (int k = 0; k < 1; k++)
+        {
+            SpawnCanonEnemy();
+            yield return new WaitForSeconds(1f);
         }
         //waveIndex++;
     }
 
-    void SpawnEnemy()
+    void SpawnAdEnemy()
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(adEnemyPrefab, redTeamSpawnPoint.position, redTeamSpawnPoint.rotation);
+        Instantiate(adEnemyPrefabBlue, blueTeamSpawnPoint.position, blueTeamSpawnPoint.rotation);
     }
 
-    void SpawnEnemy2()
+    void SpawnApEnemy()
     {
-        Instantiate(enemyPrefab2, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(apEnemyPrefab, redTeamSpawnPoint.position, redTeamSpawnPoint.rotation);
+        Instantiate(apEnemyPrefabBlue, blueTeamSpawnPoint.position, blueTeamSpawnPoint.rotation);
+    }
+
+    void SpawnCanonEnemy()
+    {
+        Instantiate(canonEnemyPrefab, redTeamSpawnPoint.position, redTeamSpawnPoint.rotation);
+        Instantiate(canonEnemyPrefabBlue, blueTeamSpawnPoint.position, blueTeamSpawnPoint.rotation);
     }
 }
