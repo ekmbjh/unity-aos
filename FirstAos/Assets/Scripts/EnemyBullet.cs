@@ -8,20 +8,38 @@ public class EnemyBullet : MonoBehaviour
 
     public float speed = 7f;
     public float damage = 10f;
+    public string enemyBulletTag;
 
-    public void Seek(Transform _target)
+    public void Seek(Transform _target, string _enemyBulletTag)
     {
         target = _target;
+        enemyBulletTag = _enemyBulletTag;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
+        if (enemyBulletTag == "Red")
         {
-            Destroy(gameObject);
-            return;
+            if (target == null || target.tag != "Blue")
+            {
+                Destroy(gameObject);
+                return;
+            }
         }
+        else if (enemyBulletTag == "Blue")
+        {
+            if (target == null || target.tag != "Red")
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
+        //if (target == null)
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
 
         Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
@@ -31,8 +49,17 @@ public class EnemyBullet : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.position) < 0.5f)
         {
-            Enemy enemy = target.GetComponent<Enemy>();
-            enemy.health -= damage;
+            if (enemyBulletTag == "Blue")
+            {
+                RedEnemy enemy = target.GetComponent<RedEnemy>();
+                enemy.OnDamage(damage);
+            }
+            else if (enemyBulletTag == "Red")
+            {
+                BlueEnemy enemy = target.GetComponent<BlueEnemy>();
+                enemy.OnDamage(damage);
+            }
+            
             //PlayerStats playerHealth = target.GetComponent<PlayerStats>();
             //playerHealth.health -= damage;
             Debug.Log("AdEnemy Attack");

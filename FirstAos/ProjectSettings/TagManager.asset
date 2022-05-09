@@ -14,6 +14,8 @@ TagManager:
   - BlueAd
   - BlueAp
   - BlueCanon
+  - Blue
+  - Red
   layers:
   - Default
   - TransparentFX

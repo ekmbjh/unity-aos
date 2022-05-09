@@ -8,12 +8,12 @@ public class Movement : MonoBehaviour
     public float rotationSpeed = 3f;
     public CharacterController controller;
     public Vector3 movePoint;
-    public Camera camera;
+    public Camera veiw;
     // Start is called before the first frame update
     void Start()
     {
         speed = 10f;
-        camera = Camera.main;
+        veiw = Camera.main;
         controller = GetComponent<CharacterController>();
         movePoint = transform.position;
     }
@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = veiw.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin, movePoint * 10f, Color.red, 1f);
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo))

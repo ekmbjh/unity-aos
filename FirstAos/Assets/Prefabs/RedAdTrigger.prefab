@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7085792381161384228}
   - component: {fileID: 6370436173284934671}
+  - component: {fileID: 7105047332286393796}
   m_Layer: 0
   m_Name: RedAdTrigger
-  m_TagString: Untagged
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +47,30 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7105047332286393796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546595653513997436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d4cb67454e57a46ab5aeead7abc845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  target: {fileID: 0}
+  health: 100
+  damage: 10
+  player: {fileID: 0}
+  isChase: 0
+  attackRange: 2
+  bullet: {fileID: 0}
+  firePosition: {fileID: 0}
+  enemies: []
+  enemyTag: Blue
+  range: 5
 --- !u!1001 &6222400139021952186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53,6 +78,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7085792381161384228}
     m_Modifications:
+    - target: {fileID: 3543173629134843849, guid: b609219727eb2734691e3f435f0fc6ec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6005300442713200586, guid: b609219727eb2734691e3f435f0fc6ec, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -101,7 +130,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedAd
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 295480055, guid: b609219727eb2734691e3f435f0fc6ec, type: 3}
+    - {fileID: 3543173629134843849, guid: b609219727eb2734691e3f435f0fc6ec, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b609219727eb2734691e3f435f0fc6ec, type: 3}
 --- !u!4 &364082496919581552 stripped
 Transform:

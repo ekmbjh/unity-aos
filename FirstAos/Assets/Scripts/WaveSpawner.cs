@@ -17,7 +17,7 @@ public class WaveSpawner : MonoBehaviour
     //public float timeBetweenWaves = 5f;
     private float countdown = 2f;
 
-    private int waveIndex = 1;
+    //private int waveIndex = 1;
 
     void Update()
     {
@@ -44,12 +44,12 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-        for (int k = 0; k < 1; k++)
+        /*for (int k = 0; k < 1; k++)
         {
             SpawnCanonEnemy();
             yield return new WaitForSeconds(1f);
         }
-        //waveIndex++;
+        //waveIndex++;*/
     }
 
     void SpawnAdEnemy()

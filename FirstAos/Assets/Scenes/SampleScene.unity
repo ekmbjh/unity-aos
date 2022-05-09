@@ -599,10 +599,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adEnemyPrefab: {fileID: 7085792381161384228, guid: e7c087c575b377542805898ba7190541, type: 3}
-  apEnemyPrefab: {fileID: 8301669476640809197, guid: ca0b5cfedc6743540af8508b08b8098c, type: 3}
+  apEnemyPrefab: {fileID: 6437186624731433795, guid: 028bc696d5ac8c04fbb2a566573d95af, type: 3}
   canonEnemyPrefab: {fileID: 939366990811539428, guid: 22ca06fc7effaff499e41430b3ad9de5, type: 3}
-  adEnemyPrefabBlue: {fileID: 2082081848869558278, guid: 24bb4519f3147654a974cbc4676279d9, type: 3}
-  apEnemyPrefabBlue: {fileID: 8301669476640809197, guid: e6e54c80db473be4eb012f79ed157bfc, type: 3}
+  adEnemyPrefabBlue: {fileID: 7983646057604317062, guid: 3099f2db2e11abe498a6a80f6e458529, type: 3}
+  apEnemyPrefabBlue: {fileID: 2986164447271392568, guid: e46220651e70c924f9b4a13517bc26aa, type: 3}
   canonEnemyPrefabBlue: {fileID: 939366990811539428, guid: ffbf46147fe76a4489d0f5ea62902f52, type: 3}
   redTeamSpawnPoint: {fileID: 810132234}
   blueTeamSpawnPoint: {fileID: 894550111}
@@ -786,7 +786,7 @@ MonoBehaviour:
   rotationSpeed: 3
   controller: {fileID: 0}
   movePoint: {x: 0, y: 0, z: 0}
-  camera: {fileID: 0}
+  veiw: {fileID: 0}
 --- !u!136 &1682008944
 CapsuleCollider:
   m_ObjectHideFlags: 0
