@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 176155393}
   m_Layer: 0
   m_Name: WayPoint (2)
-  m_TagString: Untagged
+  m_TagString: RedWay
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 196433853}
   m_Layer: 0
   m_Name: WayPoint (1)
-  m_TagString: Untagged
+  m_TagString: BlueWay
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 674184916}
   m_Layer: 0
   m_Name: WayPoint (3)
-  m_TagString: Untagged
+  m_TagString: RedWay
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -417,6 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 783235588}
   - component: {fileID: 783235587}
+  - component: {fileID: 783235589}
   m_Layer: 0
   m_Name: BlueTowerTrigger
   m_TagString: Blue
@@ -445,7 +446,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783235586}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.5, y: 2.5, z: -1.9}
+  m_LocalPosition: {x: 26.02, y: 2.5, z: -1.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -453,6 +454,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &783235589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783235586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0d7a1d065be974fa5b6ad52552358c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestroy: 0
+  TurretDesScript: {fileID: 6255609555209091449, guid: 3099f2db2e11abe498a6a80f6e458529, type: 3}
+  TurretDesScriptRed: {fileID: 7887342169669728783, guid: 9f493d0dad9688d438fb2d3feea1eaab, type: 3}
+  TurretDesScriptBlue: {fileID: 6255609555209091449, guid: 3099f2db2e11abe498a6a80f6e458529, type: 3}
+  range: 15
+  health: 100
+  bulletPrefab: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  enemyTag: AdEnemy
+  firePoint: {fileID: 0}
 --- !u!1 &810132232
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +487,7 @@ GameObject:
   - component: {fileID: 810132234}
   m_Layer: 0
   m_Name: RedSpawnPoint
-  m_TagString: Untagged
+  m_TagString: RedWay
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -495,7 +518,7 @@ GameObject:
   - component: {fileID: 894550111}
   m_Layer: 0
   m_Name: BlueSpawnPoint
-  m_TagString: Untagged
+  m_TagString: BlueWay
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -805,7 +828,7 @@ GameObject:
   - component: {fileID: 1670210684}
   m_Layer: 0
   m_Name: WayPoint (1)
-  m_TagString: Untagged
+  m_TagString: RedWay
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -986,6 +1009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723745399}
   - component: {fileID: 1723745398}
+  - component: {fileID: 1723745400}
   m_Layer: 0
   m_Name: RedTowerTrigger
   m_TagString: Red
@@ -1022,6 +1046,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1723745400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723745397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e0d7a1d065be974fa5b6ad52552358c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestroy: 0
+  TurretDesScript: {fileID: 7887342169669728783, guid: 9f493d0dad9688d438fb2d3feea1eaab, type: 3}
+  TurretDesScriptRed: {fileID: 7887342169669728783, guid: 9f493d0dad9688d438fb2d3feea1eaab, type: 3}
+  TurretDesScriptBlue: {fileID: 6255609555209091449, guid: 3099f2db2e11abe498a6a80f6e458529, type: 3}
+  range: 15
+  health: 100
+  bulletPrefab: {fileID: 0}
+  lineRenderer: {fileID: 0}
+  enemyTag: AdEnemy
+  firePoint: {fileID: 0}
 --- !u!1 &1835518610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1080,6 @@ GameObject:
   - component: {fileID: 1835518615}
   - component: {fileID: 1835518614}
   - component: {fileID: 1835518613}
-  - component: {fileID: 1835518612}
   - component: {fileID: 1835518611}
   - component: {fileID: 1835518617}
   m_Layer: 0
@@ -1143,28 +1188,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1835518612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835518610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0d7a1d065be974fa5b6ad52552358c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDestroy: 0
-  TurretDesScript: {fileID: 6255609555209091449, guid: 3099f2db2e11abe498a6a80f6e458529, type: 3}
-  TurretDesScriptRed: {fileID: 0}
-  TurretDesScriptBlue: {fileID: 0}
-  range: 15
-  health: 100
-  bulletPrefab: {fileID: 2289708696212079899, guid: 5ef6cca23a5a13942a76c203a0ae4293, type: 3}
-  lineRenderer: {fileID: 1835518611}
-  enemyTag: AdEnemy
-  firePoint: {fileID: 1861854803}
 --- !u!65 &1835518613
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1236,7 +1259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835518610}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1, y: 0, z: 1.6}
+  m_LocalPosition: {x: 0.2, y: 0, z: 0.64}
   m_LocalScale: {x: 1, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1303,7 +1326,6 @@ GameObject:
   - component: {fileID: 1898211286}
   - component: {fileID: 1898211285}
   - component: {fileID: 1898211284}
-  - component: {fileID: 1898211283}
   - component: {fileID: 1898211282}
   - component: {fileID: 1898211288}
   m_Layer: 0
@@ -1412,28 +1434,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1898211283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1898211281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e0d7a1d065be974fa5b6ad52552358c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDestroy: 0
-  TurretDesScript: {fileID: 7887342169669728783, guid: 9f493d0dad9688d438fb2d3feea1eaab, type: 3}
-  TurretDesScriptRed: {fileID: 0}
-  TurretDesScriptBlue: {fileID: 0}
-  range: 15
-  health: 100
-  bulletPrefab: {fileID: 2289708696212079899, guid: 5ef6cca23a5a13942a76c203a0ae4293, type: 3}
-  lineRenderer: {fileID: 1898211282}
-  enemyTag: AdEnemy
-  firePoint: {fileID: 1636152120}
 --- !u!65 &1898211284
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1540,7 +1540,7 @@ GameObject:
   - component: {fileID: 1928427080}
   m_Layer: 0
   m_Name: WayPoint (3)
-  m_TagString: Untagged
+  m_TagString: BlueWay
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1669,7 +1669,7 @@ GameObject:
   - component: {fileID: 2086324646}
   m_Layer: 0
   m_Name: WayPoint (2)
-  m_TagString: Untagged
+  m_TagString: BlueWay
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

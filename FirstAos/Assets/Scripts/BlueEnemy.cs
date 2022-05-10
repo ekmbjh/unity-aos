@@ -10,7 +10,7 @@ public class BlueEnemy : Enemy
     GameObject[] otherEnemies;
     float shortestDistance = Mathf.Infinity;
     float distanceToEnemy;
-    GameObject nearestEnemy = null;
+    Transform nearestEnemy = null;
     public int enemiesIndex;
 
     void OnTriggerStay(Collider other)
@@ -18,15 +18,15 @@ public class BlueEnemy : Enemy
         if (other.tag == "RedAd" || other.tag == "RedAp" || other.tag == "RedCanon" || other.tag == "RedTower")
         {
             isChase = true;
-            otherEnemies = GameObject.FindGameObjectsWithTag(enemyTag);
-            foreach (GameObject otherEnemy in otherEnemies)
+            enemies = other.gameObject.GetComponents<Transform>();
+            foreach (Transform otherEnemy in enemies)
             {
-                distanceToEnemy = Vector3.Distance(otherEnemy.transform.position, transform.position);
+                distanceToEnemy = Vector3.Distance(otherEnemy.position, transform.position);
                 if (distanceToEnemy < shortestDistance)
                 {
                     shortestDistance = distanceToEnemy;
                     nearestEnemy = otherEnemy;
-                    enemiesIndex = Array.IndexOf(otherEnemies, otherEnemy);
+                    enemiesIndex = Array.IndexOf(enemies, otherEnemy);
                 }
             }
             if (nearestEnemy != null && shortestDistance <= range)
@@ -35,37 +35,23 @@ public class BlueEnemy : Enemy
                 //targetEnemy = nearestEnemy.GetComponent<Enemy>();
             }
         }
-        //if (other.tag == "RedAd" || other.tag == "RedAp" || other.tag == "RedCanon")
-        //{
-        //    isChase = true;
-        //    blueQueue.Enqueue(other.transform);
-        //    //target = other.transform;
-        //    if (target == null)
-        //    {
-        //        target = blueQueue.Dequeue();
-        //        //return;
-        //    }
-        //    if (target.tag != "RedAd" || target.tag != "RedAp" || target.tag != "RedCanon")
-        //    {
-        //        target = redQueue.Dequeue();
-        //    }
-        //}
     }
 
     public override void AttackPlayer()
     {
-        if (target.tag != "Red" || target == null || !isChase)
+        if (target == null || !isChase)
             return;
         if (transform.GetChild(0).tag == "BlueAd")
         {
-            if (target.transform.GetChild(0).tag == "RedTower")
+            if (target.tag == "RedTower")
             {
-                Turret turret = target.GetComponentInChildren<Turret>();
+                Turret turret = target.GetComponentInParent<Turret>();
                 turret.OnDamage(damage);
             }
             else
             {
-                RedEnemy enemyhealth = target.GetComponent<RedEnemy>();
+                print(target);
+                RedEnemy enemyhealth = target.GetComponentInParent<RedEnemy>();
                 enemyhealth.OnDamage(damage);
             }
             //PlayerStats playerHealth = player.GetComponent<PlayerStats>();
@@ -83,11 +69,11 @@ public class BlueEnemy : Enemy
         }
     }
 
-
+    
     public override void FindNewTarget()
     {
         enemiesIndex++;
-        target = otherEnemies[enemiesIndex].transform;
+        target = enemies[enemiesIndex].transform;
         //foreach (GameObject otherEnemy in otherEnemies)
         //{
         //    distanceToEnemy = Vector3.Distance(otherEnemy.transform.position, transform.position);
@@ -103,6 +89,12 @@ public class BlueEnemy : Enemy
         //{
         //    target = nearestEnemy.transform;
         //}
+    }
+
+    public void DetroyTurret(bool turret)
+    {
+        print("success");
+        isChase = turret;
     }
 }
 

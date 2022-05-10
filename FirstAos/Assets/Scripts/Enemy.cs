@@ -18,13 +18,17 @@ public class Enemy : MonoBehaviour
 
     public GameObject bullet;
     public GameObject firePosition;
-    public GameObject[] enemies;
+    public Transform[] enemies;
     public Rigidbody rigidbody;
     public bool isDestroyed = false;
+    public GameObject[] blueWayPoints;
+    public GameObject[] redWayPoints;
+    public int wayPointIndex = 0;
 
-    // Start is called before the first frame update
     public void Start()
     {
+        blueWayPoints = GameObject.FindGameObjectsWithTag("BlueWay");
+        redWayPoints = GameObject.FindGameObjectsWithTag("RedWay");
         rigidbody = GetComponentInChildren<Rigidbody>();
         if (transform.tag == "Red")
         {
@@ -46,8 +50,16 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (target == null)
+        if (target == null && enemies.Length == 1)
         {
+            isChase = false;
+            print("BackToLoad");
+            BackToLoad();
+        }
+        else if (target == null && enemies != null)
+        {
+            isChase = false;
+            print("target null , enemy null");
             FindNewTarget();
         }
         if (!isChase)
@@ -61,35 +73,43 @@ public class Enemy : MonoBehaviour
         attackCntDown -= Time.deltaTime;
     }
 
+    public void BackToLoad()
+    {
+        if (transform.tag == "Blue")
+        {
+            GameObject nearWay = null;
+            float shortDistance = Mathf.Infinity;
+            foreach (GameObject way in blueWayPoints)
+            {
+                float distance = Vector3.Distance(transform.position, way.transform.position);
+                if (distance <= shortDistance)
+                {
+                    shortDistance = distance;
+                    nearWay = way;
+                }
+            }
+            target = nearWay.transform;
+        }
+        else if (transform.tag == "Red")
+        {
+            GameObject nearWay = null;
+            float shortDistance = Mathf.Infinity;
+            foreach (GameObject way in redWayPoints)
+            {
+                float distance = Vector3.Distance(transform.position, way.transform.position);
+                if (distance <= shortDistance)
+                {
+                    shortDistance = distance;
+                    nearWay = way;
+                }
+            }
+            target = nearWay.transform;
+        }
+    }
     public void TurretDestory(bool destroy)
     {
         isDestroyed = destroy;
     }
-    //void OnTriggerEnter(Collider other)
-    //{
-    //}
-
-    //void OnTriggerStay(Collider other)
-    //{
-    //    if (other.transform.tag == "Player")
-    //    {
-    //        isChase = true;
-    //    }
-
-    //}
-
-    //void OnTriggerExit(Collider other)
-    //{
-    //    //isChase = false;
-    //    //if (transform.tag == "RedAd" || transform.tag == "RedAp" || transform.tag == "RedCanon")
-    //    //{
-    //    //    target = Waypoint.points[wavepointIndex];
-    //    //}
-    //    //else if (transform.tag == "BlueAd" || transform.tag == "BlueAp" || transform.tag == "BlueCanon")
-    //    //{
-    //    //    target = WaypointBlue.bluePoints[wavepointIndex];
-    //    //}
-    //}
 
     void MoveToPlayer()
     {
@@ -110,25 +130,24 @@ public class Enemy : MonoBehaviour
 
     public virtual void AttackPlayer()
     {
-        //if (transform.tag == "RedAd" || transform.tag == "BlueAd")
-        //{
-        //    Enemy enemyhealth = target.GetComponent<Enemy>();
-        //    enemyhealth.health -= damage;
 
-        //}
-        //else if (transform.tag == "RedAp" || transform.tag == "RedCanon" || transform.tag == "BlueAp" || transform.tag == "BlueCanon")
-        //{
-        //    Enemy enemyhealth = target.GetComponent<Enemy>();
-        //    enemyhealth.health -= damage;
-        //    transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
-        //    GameObject enemybullet = (GameObject)Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
-        //    EnemyBullet enemybul = enemybullet.GetComponent<EnemyBullet>();
-        //    enemybul.Seek(target);
-        //}
     }
 
     void FollowTheLoad()
     {
+        //if (wayPointIndex != 0)
+        //{
+        //    if (transform.tag == "Blue")
+        //    {
+        //        target = WaypointBlue.bluePoints[wayPointIndex];
+        //        wayPointIndex++;
+        //    }
+        //    else if (transform.tag == "Red")
+        //    {
+        //        target = Waypoint.points[wayPointIndex];
+        //        wayPointIndex++;
+        //    }
+        //}
         // enemy가 이동할 방향
         Vector3 dir = target.position - transform.position;
         // enemy를 이동

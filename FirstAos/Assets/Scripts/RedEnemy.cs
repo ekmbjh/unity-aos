@@ -10,68 +10,47 @@ public class RedEnemy : Enemy
     GameObject[] otherEnemies;
     float shortestDistance = Mathf.Infinity;
     float distanceToEnemy;
-    GameObject nearestEnemy = null;
+    Transform nearestEnemy = null;
     public int enemiesIndex;
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "BlueAd" || other.tag == "BlueAp" || other.tag == "BlueCanon" || other.tag == "BlueTower")
+        if (other.tag == "BlueAp" || other.tag == "BlueCanon" || other.tag == "BlueTower")
         {
             isChase = true;
-            otherEnemies = GameObject.FindGameObjectsWithTag(enemyTag);
-            foreach (GameObject otherEnemy in otherEnemies)
+            enemies = other.gameObject.GetComponents<Transform>();
+            foreach (Transform otherEnemy in enemies)
             {
-                distanceToEnemy = Vector3.Distance(otherEnemy.transform.position, transform.position);
+                distanceToEnemy = Vector3.Distance(otherEnemy.position, transform.position);
                 if (distanceToEnemy < shortestDistance)
                 {
                     shortestDistance = distanceToEnemy;
                     nearestEnemy = otherEnemy;
-                    enemiesIndex = Array.IndexOf(otherEnemies, otherEnemy);
+                    enemiesIndex = Array.IndexOf(enemies, otherEnemy);
                 }
             }
             if (nearestEnemy != null && shortestDistance <= range)
             {
                 target = nearestEnemy.transform;
+                //targetEnemy = nearestEnemy.GetComponent<Enemy>();
             }
-            //targetEnemy = nearestEnemy.GetComponent<Enemy>();
         }
 
-        //void OnTriggerEnter(Collider other)
-        //{
-        //    if (other.tag == "BlueAd" || other.tag == "BlueAp" || other.tag == "BlueCanon")
-        //    {
-        //        isChase = true;
-        //        redQueue.Enqueue(other.transform);
-        //        //target = other.transform;
-        //        /* 큐가 널이면 리턴;
-        //         * 타겟이 bluead, blueap, bluecanon이 아니면 디큐해서 타겟 변경
-        //         * */
-        //        if (target == null)
-        //        {
-        //            target = redQueue.Dequeue();
-        //            //return;
-        //        }
-        //        if (target.tag != "BlueAd" || target.tag != "BlueAp" || target.tag != "BlueCanon")
-        //        {
-        //            target = redQueue.Dequeue();
-        //        }
-        //    }
-        //}
     }
     public override void AttackPlayer()
     {
-        if (target.tag != "Blue" || target == null || !isChase)
+        if (target == null || !isChase)
             return;
         if (transform.GetChild(0).tag == "RedAd")
         {
-            if (target.transform.GetChild(0).tag == "BlueTower")
+            if (target.tag == "BlueTower")
             {
-                Turret turret = target.GetComponentInChildren<Turret>();
+                Turret turret = target.GetComponentInParent<Turret>();
                 turret.OnDamage(damage);
             }
             else
             {
-                BlueEnemy enemyhealth = target.GetComponent<BlueEnemy>();
+                BlueEnemy enemyhealth = target.GetComponentInParent<BlueEnemy>();
                 enemyhealth.OnDamage(damage);
             }
             //PlayerStats playerHealth = player.GetComponent<PlayerStats>();
@@ -93,7 +72,7 @@ public class RedEnemy : Enemy
     public override void FindNewTarget()
     {
         enemiesIndex++;
-        target = otherEnemies[enemiesIndex].transform;
+        target = enemies[enemiesIndex].transform;
         //foreach (GameObject otherEnemy in otherEnemies)
         //{
         //    distanceToEnemy = Vector3.Distance(otherEnemy.transform.position, transform.position);
@@ -109,5 +88,10 @@ public class RedEnemy : Enemy
         //{
         //    target = nearestEnemy.transform;
         //}
+    }
+    public void DetroyTurret(bool turret)
+    {
+        print("success");
+        isChase = turret;
     }
 }

@@ -61,14 +61,20 @@ public class Turret : MonoBehaviour
         {
             RedEnemy redenemy = TurretDesScriptRed.GetComponent<RedEnemy>();
             BlueEnemy blueenemy = TurretDesScriptBlue.GetComponent<BlueEnemy>();
-            //blueenemy.TurretDestroy(true);
-            //redenemy.TurretDestroy(true);
-            //Enemy enemy = TurretDesScript.GetComponent<Enemy>();
-            //enemy.TurretDestory(true);
-            //enemy.isChase = false;
-            redenemy.isChase = false;
-            blueenemy.isChase = false;
 
+            //    //blueenemy.TurretDestroy(true);
+            //    //redenemy.TurretDestroy(true);
+            //    //Enemy enemy = TurretDesScript.GetComponent<Enemy>();
+            //    //enemy.TurretDestory(true);
+            //    //enemy.isChase = false;
+
+            redenemy.DetroyTurret(false);
+            blueenemy.DetroyTurret(false);
+
+            //    redenemy.target = null;
+            //    blueenemy.target = null;
+
+            //    //gameObject.SetActive(false);
             Destroy(gameObject);
         }
         if (target == null)
@@ -123,4 +129,22 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    //void OnTriggerStay(Collider other)
+    //{
+    //    print(other.tag);
+    //    if (health <= 0f)
+    //    {
+    //        if (other.tag == "Blue")
+    //        {
+    //            print("if blue");
+    //            other.GetComponentInChildren<BlueEnemy>().target = null;
+    //        }
+    //        else if (other.tag == "Red")
+    //        {
+    //            other.GetComponentInChildren<RedEnemy>().target = null;
+    //        }
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
