@@ -185,6 +185,7 @@ MonoBehaviour:
   bullet: {fileID: 3430976629509459500, guid: 0e5da6ad389df0942b6540fe985630ab, type: 3}
   firePosition: {fileID: 4671986712178958817}
   enemies: []
+  rigidbody: {fileID: 0}
   enemyTag: Red
   range: 5
   shortestDistance: Infinity

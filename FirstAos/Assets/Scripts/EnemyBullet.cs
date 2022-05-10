@@ -49,20 +49,36 @@ public class EnemyBullet : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.position) < 0.5f)
         {
+            if (target.tag != "Red" || target.tag != "Blue") return;
             if (enemyBulletTag == "Blue")
             {
-                RedEnemy enemy = target.GetComponent<RedEnemy>();
-                enemy.OnDamage(damage);
+                if (target.transform.GetChild(0).tag == "RedTower")
+                {
+                    Turret turret = target.GetComponentInChildren<Turret>();
+                    turret.OnDamage(damage);
+                }
+                else
+                {
+                    RedEnemy enemy = target.GetComponent<RedEnemy>();
+                    enemy.OnDamage(damage);
+                }
             }
             else if (enemyBulletTag == "Red")
             {
-                BlueEnemy enemy = target.GetComponent<BlueEnemy>();
-                enemy.OnDamage(damage);
+                if (target.transform.GetChild(0).tag == "RedTower")
+                {
+                    Turret turret = target.GetComponentInChildren<Turret>();
+                    turret.OnDamage(damage);
+                }
+                else
+                {
+                    BlueEnemy enemy = target.GetComponent<BlueEnemy>();
+                    enemy.OnDamage(damage);
+                }
             }
-            
+
             //PlayerStats playerHealth = target.GetComponent<PlayerStats>();
             //playerHealth.health -= damage;
-            Debug.Log("AdEnemy Attack");
             Destroy(gameObject);
         }
     }

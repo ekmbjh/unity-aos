@@ -8,31 +8,32 @@ public class BlueEnemy : Enemy
     public string enemyTag = "Red";
     public float range = 5f;
     GameObject[] otherEnemies;
-    public float shortestDistance = Mathf.Infinity;
-    public float distanceToEnemy;
+    float shortestDistance = Mathf.Infinity;
+    float distanceToEnemy;
     GameObject nearestEnemy = null;
     public int enemiesIndex;
+
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "RedAd" || other.tag == "RedAp" || other.tag == "RedCanon")
+        if (other.tag == "RedAd" || other.tag == "RedAp" || other.tag == "RedCanon" || other.tag == "RedTower")
         {
             isChase = true;
-        }
-        otherEnemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        foreach (GameObject otherEnemy in otherEnemies)
-        {
-            distanceToEnemy = Vector3.Distance(otherEnemy.transform.position, transform.position);
-            if (distanceToEnemy < shortestDistance)
+            otherEnemies = GameObject.FindGameObjectsWithTag(enemyTag);
+            foreach (GameObject otherEnemy in otherEnemies)
             {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = otherEnemy;
-                enemiesIndex = Array.IndexOf(otherEnemies, otherEnemy);
+                distanceToEnemy = Vector3.Distance(otherEnemy.transform.position, transform.position);
+                if (distanceToEnemy < shortestDistance)
+                {
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = otherEnemy;
+                    enemiesIndex = Array.IndexOf(otherEnemies, otherEnemy);
+                }
             }
-        }
-        if (nearestEnemy != null && shortestDistance <= range)
-        {
-            target = nearestEnemy.transform;
-            //targetEnemy = nearestEnemy.GetComponent<Enemy>();
+            if (nearestEnemy != null && shortestDistance <= range)
+            {
+                target = nearestEnemy.transform;
+                //targetEnemy = nearestEnemy.GetComponent<Enemy>();
+            }
         }
         //if (other.tag == "RedAd" || other.tag == "RedAp" || other.tag == "RedCanon")
         //{
@@ -50,16 +51,25 @@ public class BlueEnemy : Enemy
         //    }
         //}
     }
-    
+
     public override void AttackPlayer()
     {
+        if (target.tag != "Red" || target == null || !isChase)
+            return;
         if (transform.GetChild(0).tag == "BlueAd")
         {
-            RedEnemy enemyhealth = target.GetComponent<RedEnemy>();
-            enemyhealth.OnDamage(damage);
+            if (target.transform.GetChild(0).tag == "RedTower")
+            {
+                Turret turret = target.GetComponentInChildren<Turret>();
+                turret.OnDamage(damage);
+            }
+            else
+            {
+                RedEnemy enemyhealth = target.GetComponent<RedEnemy>();
+                enemyhealth.OnDamage(damage);
+            }
             //PlayerStats playerHealth = player.GetComponent<PlayerStats>();
             //playerHealth.health -= damage;
-            Debug.Log("AdEnemy Attack");
         }
         else if (transform.GetChild(0).tag == "BlueAp" || transform.GetChild(0).tag == "BlueCanon")
         {
@@ -70,9 +80,9 @@ public class BlueEnemy : Enemy
             GameObject enemybullet = (GameObject)Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
             EnemyBullet enemybul = enemybullet.GetComponent<EnemyBullet>();
             enemybul.Seek(target, enemybulletTag);
-            Debug.Log("ApEnemy Bullet Instantiate");
         }
     }
+
 
     public override void FindNewTarget()
     {

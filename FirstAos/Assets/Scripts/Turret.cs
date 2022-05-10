@@ -6,9 +6,15 @@ public class Turret : MonoBehaviour
 {
     private Transform target;
     private Enemy targetEnemy;
+    public bool isDestroy = false;
+
+    public GameObject TurretDesScript;
+    public GameObject TurretDesScriptRed;
+    public GameObject TurretDesScriptBlue;
 
     [Header("General")]
     public float range = 15f;
+    public float health = 100f;
 
     [Header("Bullet & Laser")]
     public GameObject bulletPrefab;
@@ -21,7 +27,7 @@ public class Turret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        //InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     void UpdateTarget()
@@ -51,6 +57,20 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health <= 0f)
+        {
+            RedEnemy redenemy = TurretDesScriptRed.GetComponent<RedEnemy>();
+            BlueEnemy blueenemy = TurretDesScriptBlue.GetComponent<BlueEnemy>();
+            //blueenemy.TurretDestroy(true);
+            //redenemy.TurretDestroy(true);
+            //Enemy enemy = TurretDesScript.GetComponent<Enemy>();
+            //enemy.TurretDestory(true);
+            //enemy.isChase = false;
+            redenemy.isChase = false;
+            blueenemy.isChase = false;
+
+            Destroy(gameObject);
+        }
         if (target == null)
         {
             return;
@@ -91,6 +111,11 @@ public class Turret : MonoBehaviour
     {
         lineRenderer.SetPosition(0, firePoint.position);
         lineRenderer.SetPosition(1, target.position);
+    }
+
+    public void OnDamage(float Damage)
+    {
+        health -= Damage;
     }
 
     void OnDrawGizmosSelected()

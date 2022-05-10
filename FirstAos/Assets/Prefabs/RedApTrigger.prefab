@@ -69,10 +69,9 @@ MonoBehaviour:
   bullet: {fileID: 3430976629509459500, guid: 0e5da6ad389df0942b6540fe985630ab, type: 3}
   firePosition: {fileID: 2401614945877481289}
   enemies: []
+  rigidbody: {fileID: 0}
   enemyTag: Blue
   range: 5
-  shortestDistance: Infinity
-  distanceToEnemy: 0
   enemiesIndex: 0
 --- !u!1 &2401614945877481289
 GameObject:

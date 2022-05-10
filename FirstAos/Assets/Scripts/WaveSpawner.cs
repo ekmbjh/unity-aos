@@ -44,12 +44,12 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
-        /*for (int k = 0; k < 1; k++)
+        for (int k = 0; k < 1; k++)
         {
             SpawnCanonEnemy();
             yield return new WaitForSeconds(1f);
         }
-        //waveIndex++;*/
+        //waveIndex++;
     }
 
     void SpawnAdEnemy()

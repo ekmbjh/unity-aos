@@ -5,9 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - ApEnemy
-  - AdEnemy
-  - CanonEnemy
   - RedAd
   - RedAp
   - RedCanon
@@ -16,6 +13,8 @@ TagManager:
   - BlueCanon
   - Blue
   - Red
+  - BlueTower
+  - RedTower
   layers:
   - Default
   - TransparentFX

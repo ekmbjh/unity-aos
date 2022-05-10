@@ -19,10 +19,13 @@ public class Enemy : MonoBehaviour
     public GameObject bullet;
     public GameObject firePosition;
     public GameObject[] enemies;
+    public Rigidbody rigidbody;
+    public bool isDestroyed = false;
 
     // Start is called before the first frame update
     public void Start()
     {
+        rigidbody = GetComponentInChildren<Rigidbody>();
         if (transform.tag == "Red")
         {
             target = Waypoint.points[0];
@@ -38,6 +41,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        rigidbody.velocity = Vector3.zero;
         if (health <= 0f)
         {
             Destroy(gameObject);
@@ -55,6 +59,11 @@ public class Enemy : MonoBehaviour
             MoveToPlayer();
         }
         attackCntDown -= Time.deltaTime;
+    }
+
+    public void TurretDestory(bool destroy)
+    {
+        isDestroyed = destroy;
     }
     //void OnTriggerEnter(Collider other)
     //{
@@ -126,8 +135,8 @@ public class Enemy : MonoBehaviour
         // Space.World(월드 좌표 기준), Space.Self(오브젝트의 좌표 기준)
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-        // 목표로 하는 Waypoint와의 거리가 0.4이하라면 다음 이동 목표 할당
-        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+        // 목표로 하는 Waypoint와의 거리가 1이하라면 다음 이동 목표 할당
+        if (Vector3.Distance(transform.position, target.position) <= 1f)
         {
             GetNextWayPoint();
         }

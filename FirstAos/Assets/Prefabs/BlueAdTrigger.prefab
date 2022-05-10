@@ -69,6 +69,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   firePosition: {fileID: 0}
   enemies: []
+  rigidbody: {fileID: 0}
   enemyTag: Red
   range: 5
   shortestDistance: Infinity
