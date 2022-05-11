@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\WaypointBlue.cs" />
+    <Compile Include="Assets\Scripts\Nexus.cs" />
     <Compile Include="Assets\Scripts\BlueEnemy.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\RedEnemy.cs" />
@@ -70,7 +71,6 @@
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
-    <Compile Include="Assets\Scripts\Nexus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
