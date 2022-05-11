@@ -21,14 +21,13 @@ public class Enemy : MonoBehaviour
     public Transform[] enemies;
     public Rigidbody rigidbody;
     public bool isDestroyed = false;
-    public GameObject[] blueWayPoints;
-    public GameObject[] redWayPoints;
-    public int wayPointIndex = 0;
+    //public GameObject[] blueWayPoints;
+    //public GameObject[] redWayPoints;
 
     public void Start()
     {
-        blueWayPoints = GameObject.FindGameObjectsWithTag("BlueWay");
-        redWayPoints = GameObject.FindGameObjectsWithTag("RedWay");
+        //blueWayPoints = GameObject.FindGameObjectsWithTag("BlueWay");
+        //redWayPoints = GameObject.FindGameObjectsWithTag("RedWay");
         rigidbody = GetComponentInChildren<Rigidbody>();
         if (transform.tag == "Red")
         {
@@ -77,33 +76,35 @@ public class Enemy : MonoBehaviour
     {
         if (transform.tag == "Blue")
         {
-            GameObject nearWay = null;
-            float shortDistance = Mathf.Infinity;
-            foreach (GameObject way in blueWayPoints)
-            {
-                float distance = Vector3.Distance(transform.position, way.transform.position);
-                if (distance <= shortDistance)
-                {
-                    shortDistance = distance;
-                    nearWay = way;
-                }
-            }
-            target = nearWay.transform;
+            //GameObject nearWay = null;
+            //float shortDistance = Mathf.Infinity;
+            //foreach (GameObject way in blueWayPoints)
+            //{
+            //    float distance = Vector3.Distance(transform.position, way.transform.position);
+            //    if (distance <= shortDistance)
+            //    {
+            //        shortDistance = distance;
+            //        nearWay = way;
+            //    }
+            //}
+            target = WaypointBlue.bluePoints[wavepointIndex];
+            //target = nearWay.transform;
         }
         else if (transform.tag == "Red")
         {
-            GameObject nearWay = null;
-            float shortDistance = Mathf.Infinity;
-            foreach (GameObject way in redWayPoints)
-            {
-                float distance = Vector3.Distance(transform.position, way.transform.position);
-                if (distance <= shortDistance)
-                {
-                    shortDistance = distance;
-                    nearWay = way;
-                }
-            }
-            target = nearWay.transform;
+            //GameObject nearWay = null;
+            //float shortDistance = Mathf.Infinity;
+            //foreach (GameObject way in redWayPoints)
+            //{
+            //    float distance = Vector3.Distance(transform.position, way.transform.position);
+            //    if (distance <= shortDistance)
+            //    {
+            //        shortDistance = distance;
+            //        nearWay = way;
+            //    }
+            //}
+            target = Waypoint.points[wavepointIndex];
+            //target = nearWay.transform;
         }
     }
     public void TurretDestory(bool destroy)

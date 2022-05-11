@@ -8,17 +8,21 @@ public class RedEnemy : Enemy
     public string enemyTag = "Blue";
     public float range = 5f;
     GameObject[] otherEnemies;
-    float shortestDistance = Mathf.Infinity;
-    float distanceToEnemy;
-    Transform nearestEnemy = null;
+    public float shortestDistance = Mathf.Infinity;
+    public float distanceToEnemy;
+    public Transform nearestEnemy = null;
     public int enemiesIndex;
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "BlueAp" || other.tag == "BlueCanon" || other.tag == "BlueTower")
+        if (other.tag == "BlueAd" || other.tag == "BlueAp" || other.tag == "BlueCanon" || other.tag == "BlueTower")
         {
             isChase = true;
             enemies = other.gameObject.GetComponents<Transform>();
+            if (nearestEnemy == null)
+            {
+                shortestDistance = Mathf.Infinity;
+            }
             foreach (Transform otherEnemy in enemies)
             {
                 distanceToEnemy = Vector3.Distance(otherEnemy.position, transform.position);
@@ -58,8 +62,6 @@ public class RedEnemy : Enemy
         }
         else if (transform.GetChild(0).tag == "RedAp" || transform.GetChild(0).tag == "RedCanon")
         {
-            //BlueEnemy enemyhealth = target.GetComponent<BlueEnemy>();
-            //enemyhealth.OnDamage(damage);
             string enemybulletTag = "Red";
             transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
             GameObject enemybullet = (GameObject)Instantiate(bullet, firePosition.transform.position, firePosition.transform.rotation);
@@ -91,7 +93,6 @@ public class RedEnemy : Enemy
     }
     public void DetroyTurret(bool turret)
     {
-        print("success");
         isChase = turret;
     }
 }

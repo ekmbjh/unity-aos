@@ -21,7 +21,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (enemyBulletTag == "Red")
         {
-            if (target == null || target.tag != "Blue")
+            if (target == null) //|| target.tag != "Blue"
             {
                 Destroy(gameObject);
                 return;
@@ -29,7 +29,7 @@ public class EnemyBullet : MonoBehaviour
         }
         else if (enemyBulletTag == "Blue")
         {
-            if (target == null || target.tag != "Red")
+            if (target == null) //|| target.tag != "Red"
             {
                 Destroy(gameObject);
                 return;
@@ -49,36 +49,37 @@ public class EnemyBullet : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.position) < 0.5f)
         {
-            if (target.tag != "Red" || target.tag != "Blue") return;
+            //if (target.tag != "Red" || target.tag != "Blue") return;
             if (enemyBulletTag == "Blue")
             {
-                if (target.transform.GetChild(0).tag == "RedTower")
+                if (target.tag == "RedTower")
                 {
-                    Turret turret = target.GetComponentInChildren<Turret>();
+                    Turret turret = target.GetComponentInParent<Turret>();
                     turret.OnDamage(damage);
                 }
                 else
                 {
-                    RedEnemy enemy = target.GetComponent<RedEnemy>();
+                    RedEnemy enemy = target.GetComponentInParent<RedEnemy>();
                     enemy.OnDamage(damage);
                 }
             }
             else if (enemyBulletTag == "Red")
             {
-                if (target.transform.GetChild(0).tag == "RedTower")
+                if (target.tag == "BlueTower")
                 {
-                    Turret turret = target.GetComponentInChildren<Turret>();
+                    Turret turret = target.GetComponentInParent<Turret>();
                     turret.OnDamage(damage);
                 }
                 else
                 {
-                    BlueEnemy enemy = target.GetComponent<BlueEnemy>();
+                    BlueEnemy enemy = target.GetComponentInParent<BlueEnemy>();
                     enemy.OnDamage(damage);
                 }
             }
 
             //PlayerStats playerHealth = target.GetComponent<PlayerStats>();
             //playerHealth.health -= damage;
+
             Destroy(gameObject);
         }
     }
