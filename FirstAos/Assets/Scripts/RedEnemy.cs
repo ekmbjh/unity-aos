@@ -15,7 +15,7 @@ public class RedEnemy : Enemy
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "BlueAd" || other.tag == "BlueAp" || other.tag == "BlueCanon" || other.tag == "BlueTower")
+        if (other.tag == "BlueAd" || other.tag == "BlueAp" || other.tag == "BlueCanon" || other.tag == "BlueTower" || other.tag == "BlueNexus")
         {
             isChase = true;
             enemies = other.gameObject.GetComponents<Transform>();
@@ -51,6 +51,11 @@ public class RedEnemy : Enemy
             {
                 Turret turret = target.GetComponentInParent<Turret>();
                 turret.OnDamage(damage);
+            }
+            else if (target.tag == "BlueNexus")
+            {
+                Nexus nexus = target.GetComponentInParent<Nexus>();
+                nexus.OnDamage(damage);
             }
             else
             {

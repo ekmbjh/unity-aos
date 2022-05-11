@@ -17,6 +17,8 @@ TagManager:
   - RedTower
   - BlueWay
   - RedWay
+  - BlueNexus
+  - RedNexus
   layers:
   - Default
   - TransparentFX

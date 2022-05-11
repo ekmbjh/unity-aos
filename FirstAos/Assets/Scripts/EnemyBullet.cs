@@ -57,6 +57,11 @@ public class EnemyBullet : MonoBehaviour
                     Turret turret = target.GetComponentInParent<Turret>();
                     turret.OnDamage(damage);
                 }
+                else if (target.tag == "RedNexus")
+                {
+                    Nexus nexus = target.GetComponentInParent<Nexus>();
+                    nexus.OnDamage(damage);
+                }
                 else
                 {
                     RedEnemy enemy = target.GetComponentInParent<RedEnemy>();
@@ -69,6 +74,11 @@ public class EnemyBullet : MonoBehaviour
                 {
                     Turret turret = target.GetComponentInParent<Turret>();
                     turret.OnDamage(damage);
+                }
+                else if (target.tag == "BlueNexus")
+                {
+                    Nexus nexus = target.GetComponentInParent<Nexus>();
+                    nexus.OnDamage(damage);
                 }
                 else
                 {
