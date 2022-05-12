@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     public Transform player;
     public bool isChase = false;
     private float attackCntDown;
-    public float attackRange = 2f;
+    public float attackRange = 3f;
 
     public GameObject bullet;
     public GameObject firePosition;
@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
 
     public Animator animator;
+
     public void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -47,25 +48,25 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        if (target == null && enemies.Length == 1)
+        if (target == null && !isChase)
         {
-            isChase = false;
+            //isChase = false;
             print("BackToLoad");
             BackToLoad();
         }
-        else if (target == null && enemies != null)
-        {
-            isChase = false;
-            print("target null , enemy null");
-            FindNewTarget();
-        }
+        //else if (target == null && enemies != null)
+        //{
+        //    isChase = false;
+        //    print("target null , enemy null");
+        //    FindNewTarget();
+        //}
         if (!isChase)
         {
             FollowTheLoad();
         }
         else
         {
-            MoveToPlayer();
+            MoveToTarget();
         }
         attackCntDown -= Time.deltaTime;
     }
@@ -74,41 +75,46 @@ public class Enemy : MonoBehaviour
     {
         animator.SetBool("isAttack", false);
         agent.enabled = true;
-        if (transform.tag == "Blue")
-        {
-            target = WaypointBlue.bluePoints[wavepointIndex];
-        }
-        else if (transform.tag == "Red")
+        if (transform.tag == "Red")
         {
             target = Waypoint.points[wavepointIndex];
         }
+        else if (transform.tag == "Blue")
+        {
+            target = WaypointBlue.bluePoints[wavepointIndex];
+        }
+        agent.SetDestination(target.position);
     }
     public void TurretDestory(bool destroy)
     {
         isDestroyed = destroy;
     }
 
-    void MoveToPlayer()
+    void MoveToTarget()
     {
-        print("move to player");
-        Vector3 direction = target.transform.position - transform.position;
-        if (Vector3.Distance(target.position, transform.position) <= attackRange)
+        try
         {
-            print("attack range");
-            if (attackCntDown <= 0f)
+            Vector3 direction = target.transform.position - transform.position;
+            if (Vector3.Distance(target.position, transform.position) <= attackRange)
             {
-                print("attack");
-                agent.enabled = false;
-                AttackPlayer();
-                attackCntDown = 2f;
+                if (attackCntDown <= 0f)
+                {
+                    agent.enabled = false;
+                    AttackPlayer();
+                    attackCntDown = 2f;
+                }
             }
         }
-        else
+        catch
         {
-            print("move else");
-            agent.SetDestination(direction);
-            //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+            isChase = false;
         }
+        //else
+        //{
+        //    print("move else");
+        //    agent.SetDestination(direction);
+        //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        //}
     }
 
     public virtual void AttackPlayer()
@@ -120,21 +126,35 @@ public class Enemy : MonoBehaviour
     {
         Vector3 enemydir = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(enemydir);
+        //try
+        //{
+        //    Vector3 enemydir = new Vector3(target.position.x, transform.position.y, target.position.z);
+        //    transform.LookAt(enemydir);
+        //}
+        //catch
+        //{
+        //    isChase = false;
+        //}
         // enemy가 이동할 방향
-        Vector3 dir = target.position - transform.position;
-        dir.y = 0f;
+        //Vector3 dir = transform.position - target.position;
+        //dir.y = 0f;
         // enemy를 이동
         // Space.World(월드 좌표 기준), Space.Self(오브젝트의 좌표 기준)
         //transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
 
         // 목표로 하는 Waypoint와의 거리가 1이하라면 다음 이동 목표 할당
-        if (Vector3.Distance(transform.position, target.position) <= 1f)
+        if (Vector3.Distance(transform.position, target.position) <= 1.5f)
         {
             GetNextWayPoint();
         }
         if (agent.enabled)
-            agent.SetDestination(dir);
+            agent.SetDestination(target.position);
+        //if (agent.enabled)
+        //{
+        //    //Debug.DrawLine(transform.position, target.position);
+        //}
+
 
     }
     void GetNextWayPoint()
@@ -143,6 +163,8 @@ public class Enemy : MonoBehaviour
         {
             if (wavepointIndex >= Waypoint.points.Length - 1)
             {
+                agent.ResetPath();
+                agent.enabled = false;
                 Destroy(gameObject);
                 // return을 안시키면 하단의 명령을 실행하여 Null Reference Exception발생
                 return;
@@ -158,6 +180,8 @@ public class Enemy : MonoBehaviour
         {
             if (wavepointIndex >= WaypointBlue.bluePoints.Length - 1)
             {
+                agent.ResetPath();
+                agent.enabled = false;
                 Destroy(gameObject);
                 // return을 안시키면 하단의 명령을 실행하여 Null Reference Exception발생
                 return;

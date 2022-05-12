@@ -17,34 +17,40 @@ public class BlueEnemy : Enemy
     {
         if (other.tag == "RedAd" || other.tag == "RedAp" || other.tag == "RedCanon" || other.tag == "RedTower" || other.tag == "RedNexus")
         {
-            print("on trigger");
             isChase = true;
             enemies = other.gameObject.GetComponents<Transform>();
             if (nearestEnemy == null)
             {
                 shortestDistance = Mathf.Infinity;
             }
-            foreach (Transform otherEnemy in enemies)
-            {
-                distanceToEnemy = Vector3.Distance(otherEnemy.position, transform.position);
-                if (distanceToEnemy < shortestDistance)
-                {
-                    shortestDistance = distanceToEnemy;
-                    nearestEnemy = otherEnemy;
-                    enemiesIndex = Array.IndexOf(enemies, otherEnemy);
-                }
-            }
-            if (nearestEnemy != null && shortestDistance <= range)
-            {
-                target = nearestEnemy.transform;
-                //targetEnemy = nearestEnemy.GetComponent<Enemy>();
-            }
+            target = other.transform;
+            if (agent.enabled)
+                agent.SetDestination(target.position);
+            //foreach (Transform otherEnemy in enemies)
+            //{
+            //    distanceToEnemy = Vector3.Distance(otherEnemy.position, transform.position);
+            //    if (distanceToEnemy < shortestDistance)
+            //    {
+            //        shortestDistance = distanceToEnemy;
+            //        nearestEnemy = otherEnemy;
+            //        enemiesIndex = Array.IndexOf(enemies, otherEnemy);
+            //    }
+            //}
+            //if (nearestEnemy != null && shortestDistance <= range)
+            //{
+            //    target = nearestEnemy.transform;
+            //    //targetEnemy = nearestEnemy.GetComponent<Enemy>();
+            //}
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        // 플레이어가 멀어지면 타겟을 웨이포인트로 변경하여 기존 이동경로로 복귀
     }
 
     public override void AttackPlayer()
     {
-        
         if (target == null || !isChase)
             return;
         Vector3 dir = new Vector3(target.position.x, transform.position.y, target.position.z);
@@ -64,7 +70,6 @@ public class BlueEnemy : Enemy
             }
             else
             {
-                print(target);
                 RedEnemy enemyhealth = target.GetComponentInParent<RedEnemy>();
                 enemyhealth.OnDamage(damage);
             }
@@ -87,8 +92,8 @@ public class BlueEnemy : Enemy
         target = enemies[enemiesIndex].transform;
     }
 
-    public void DetroyTurret(bool turret)
+    public void DetroyTurret(bool isDestroy)
     {
-        isChase = turret;
+        isChase = isDestroy;
     }
 }
