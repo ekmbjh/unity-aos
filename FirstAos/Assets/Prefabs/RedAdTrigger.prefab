@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 7465377779771588439}
   - component: {fileID: 6748581214411068028}
   - component: {fileID: 7446035468877986743}
+  - component: {fileID: -4929537756254186947}
   m_Layer: 0
   m_Name: RedAdTrigger
   m_TagString: Red
@@ -184,6 +185,34 @@ MonoBehaviour:
   firePosition: {fileID: 0}
   enemies: []
   rigidbody: {fileID: 0}
+  isDestroyed: 0
+  agent: {fileID: 0}
+  animator: {fileID: 0}
   enemyTag: Blue
   range: 5
+  shortestDistance: Infinity
+  distanceToEnemy: 0
+  nearestEnemy: {fileID: 0}
   enemiesIndex: 0
+--- !u!195 &-4929537756254186947
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7887342169669728783}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

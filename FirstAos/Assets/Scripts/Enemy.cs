@@ -21,13 +21,12 @@ public class Enemy : MonoBehaviour
     public Transform[] enemies;
     public Rigidbody rigidbody;
     public bool isDestroyed = false;
-    //public GameObject[] blueWayPoints;
-    //public GameObject[] redWayPoints;
+    public NavMeshAgent agent;
 
+    public Animator animator;
     public void Start()
     {
-        //blueWayPoints = GameObject.FindGameObjectsWithTag("BlueWay");
-        //redWayPoints = GameObject.FindGameObjectsWithTag("RedWay");
+        agent = GetComponent<NavMeshAgent>();
         rigidbody = GetComponentInChildren<Rigidbody>();
         if (transform.tag == "Red")
         {
@@ -37,8 +36,7 @@ public class Enemy : MonoBehaviour
         {
             target = WaypointBlue.bluePoints[0];
         }
-        // Waypoint.cs 에서 할당한 배열을 불러와서 target에 할당
-        //player = PlayerStats.myposition;
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -74,37 +72,15 @@ public class Enemy : MonoBehaviour
 
     public void BackToLoad()
     {
+        animator.SetBool("isAttack", false);
+        agent.enabled = true;
         if (transform.tag == "Blue")
         {
-            //GameObject nearWay = null;
-            //float shortDistance = Mathf.Infinity;
-            //foreach (GameObject way in blueWayPoints)
-            //{
-            //    float distance = Vector3.Distance(transform.position, way.transform.position);
-            //    if (distance <= shortDistance)
-            //    {
-            //        shortDistance = distance;
-            //        nearWay = way;
-            //    }
-            //}
             target = WaypointBlue.bluePoints[wavepointIndex];
-            //target = nearWay.transform;
         }
         else if (transform.tag == "Red")
         {
-            //GameObject nearWay = null;
-            //float shortDistance = Mathf.Infinity;
-            //foreach (GameObject way in redWayPoints)
-            //{
-            //    float distance = Vector3.Distance(transform.position, way.transform.position);
-            //    if (distance <= shortDistance)
-            //    {
-            //        shortDistance = distance;
-            //        nearWay = way;
-            //    }
-            //}
             target = Waypoint.points[wavepointIndex];
-            //target = nearWay.transform;
         }
     }
     public void TurretDestory(bool destroy)
@@ -114,18 +90,24 @@ public class Enemy : MonoBehaviour
 
     void MoveToPlayer()
     {
+        print("move to player");
         Vector3 direction = target.transform.position - transform.position;
         if (Vector3.Distance(target.position, transform.position) <= attackRange)
         {
+            print("attack range");
             if (attackCntDown <= 0f)
             {
+                print("attack");
+                agent.enabled = false;
                 AttackPlayer();
                 attackCntDown = 2f;
             }
         }
         else
         {
-            transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+            print("move else");
+            agent.SetDestination(direction);
+            //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
         }
     }
 
@@ -136,30 +118,23 @@ public class Enemy : MonoBehaviour
 
     void FollowTheLoad()
     {
-        //if (wayPointIndex != 0)
-        //{
-        //    if (transform.tag == "Blue")
-        //    {
-        //        target = WaypointBlue.bluePoints[wayPointIndex];
-        //        wayPointIndex++;
-        //    }
-        //    else if (transform.tag == "Red")
-        //    {
-        //        target = Waypoint.points[wayPointIndex];
-        //        wayPointIndex++;
-        //    }
-        //}
+        Vector3 enemydir = new Vector3(target.position.x, transform.position.y, target.position.z);
+        transform.LookAt(enemydir);
         // enemy가 이동할 방향
         Vector3 dir = target.position - transform.position;
+        dir.y = 0f;
         // enemy를 이동
         // Space.World(월드 좌표 기준), Space.Self(오브젝트의 좌표 기준)
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        //transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+
 
         // 목표로 하는 Waypoint와의 거리가 1이하라면 다음 이동 목표 할당
         if (Vector3.Distance(transform.position, target.position) <= 1f)
         {
             GetNextWayPoint();
         }
+        if (agent.enabled)
+            agent.SetDestination(dir);
 
     }
     void GetNextWayPoint()

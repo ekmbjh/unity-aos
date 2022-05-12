@@ -92,7 +92,7 @@ public class Turret : MonoBehaviour
             fireCountdown = 2f;
         }
         fireCountdown -= Time.deltaTime;
-        //LockOnTarget();
+
     }
 
     void Shoot()
@@ -105,14 +105,6 @@ public class Turret : MonoBehaviour
             bullet.Seek(target);
         }
     }
-
-    //void LockOnTarget()
-    //{
-    //    Vector3 dir = target.position - transform.position;
-    //    Quaternion lookRotation = Quaternion.LookRotation(dir);
-    //    Vector3 rotation = Quaternion.Lerp()
-    //}
-
     void Laser()
     {
         lineRenderer.SetPosition(0, firePoint.position);
@@ -130,21 +122,4 @@ public class Turret : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    //void OnTriggerStay(Collider other)
-    //{
-    //    print(other.tag);
-    //    if (health <= 0f)
-    //    {
-    //        if (other.tag == "Blue")
-    //        {
-    //            print("if blue");
-    //            other.GetComponentInChildren<BlueEnemy>().target = null;
-    //        }
-    //        else if (other.tag == "Red")
-    //        {
-    //            other.GetComponentInChildren<RedEnemy>().target = null;
-    //        }
-    //        Destroy(gameObject);
-    //    }
-    //}
 }

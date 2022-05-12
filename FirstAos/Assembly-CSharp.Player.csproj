@@ -73,6 +73,11 @@
     <Compile Include="Assets\Scripts\Bullet.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\RPG Monster Wave PBR\Shaders\PBRMaskTint.shader" />
+    <None Include="Assets\__www.unityassetcollection.com__.txt" />
+    <None Include="Assets\RPG Monster Wave PBR\SRP\HowToTestSRPs.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity 2021.2.18f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\Variations\mono\Managed\UnityEngine.dll</HintPath>
     </Reference>

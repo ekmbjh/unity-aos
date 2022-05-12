@@ -17,6 +17,7 @@ public class BlueEnemy : Enemy
     {
         if (other.tag == "RedAd" || other.tag == "RedAp" || other.tag == "RedCanon" || other.tag == "RedTower" || other.tag == "RedNexus")
         {
+            print("on trigger");
             isChase = true;
             enemies = other.gameObject.GetComponents<Transform>();
             if (nearestEnemy == null)
@@ -43,8 +44,12 @@ public class BlueEnemy : Enemy
 
     public override void AttackPlayer()
     {
+        
         if (target == null || !isChase)
             return;
+        Vector3 dir = new Vector3(target.position.x, transform.position.y, target.position.z);
+        transform.LookAt(dir);
+        animator.SetBool("isAttack", true);
         if (transform.GetChild(0).tag == "BlueAd")
         {
             if (target.tag == "RedTower")
