@@ -7,10 +7,10 @@ public class Bullet : MonoBehaviour
     public Transform target;
 
     public float speed = 7f;
+    public float damage = 100f;
 
     public void Seek(Transform _target)
     {
-        Debug.Log("≈∏∞Ÿ»Æ¿Œ");
         target = _target;
     }
 
@@ -35,8 +35,10 @@ public class Bullet : MonoBehaviour
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
         transform.LookAt(target);
 
-        if (Vector3.Distance(transform.position, target.position) < 2.5f)
+        if (Vector3.Distance(transform.position, target.position) < 2f)
         {
+            Enemy enemy = target.GetComponent<Enemy>();
+            enemy.OnDamage(damage);
             Destroy(gameObject);
         }
     }

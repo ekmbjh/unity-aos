@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -15,24 +16,35 @@ public class Turret : MonoBehaviour
     [Header("General")]
     public float range = 15f;
     public float health = 100f;
+    public float maxhealth = 100f;
 
     [Header("Bullet & Laser")]
     public GameObject bulletPrefab;
     private float fireCountdown = 0f;
     public LineRenderer lineRenderer;
+    GameObject[] enemies;
 
     [Header("Unity Setip Field")]
-    public string enemyTag = "AdEnemy";
     public Transform firePoint;
+    public Slider hpSlider;
     // Start is called before the first frame update
     void Start()
     {
-        //InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        if (transform.tag == "Red")
+        {
+            enemies = GameObject.FindGameObjectsWithTag("Blue");
+
+        }
+        else if (transform.tag == "Blue")
+        {
+            enemies = GameObject.FindGameObjectsWithTag("Red");
+
+        }
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         foreach (GameObject enemy in enemies)
@@ -57,10 +69,12 @@ public class Turret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        hpSlider.value = health / maxhealth;
         if (health <= 0f)
         {
-            RedEnemy redenemy = TurretDesScriptRed.GetComponent<RedEnemy>();
-            BlueEnemy blueenemy = TurretDesScriptBlue.GetComponent<BlueEnemy>();
+            
+            //RedEnemy redenemy = TurretDesScriptRed.GetComponent<RedEnemy>();
+            //BlueEnemy blueenemy = TurretDesScriptBlue.GetComponent<BlueEnemy>();
 
             //    //blueenemy.TurretDestroy(true);
             //    //redenemy.TurretDestroy(true);
@@ -68,8 +82,8 @@ public class Turret : MonoBehaviour
             //    //enemy.TurretDestory(true);
             //    //enemy.isChase = false;
 
-            redenemy.DetroyTurret(false);
-            blueenemy.DetroyTurret(false);
+            //redenemy.DetroyTurret(false);
+            //blueenemy.DetroyTurret(false);
 
             //    redenemy.target = null;
             //    blueenemy.target = null;
@@ -94,9 +108,21 @@ public class Turret : MonoBehaviour
         fireCountdown -= Time.deltaTime;
 
     }
+    void Laser()
+    {
+        lineRenderer.SetPosition(0, firePoint.position);
+        lineRenderer.SetPosition(1, target.position + new Vector3(0, 0.6f, 0.2f));
+    }
+
 
     void Shoot()
     {
+        Enemy enemy = target.GetComponent<Enemy>();
+        if (enemy.isDie)
+        {
+            return;
+        }
+        
         GameObject bulletGo = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGo.GetComponent<Bullet>();
 
@@ -104,11 +130,6 @@ public class Turret : MonoBehaviour
         {
             bullet.Seek(target);
         }
-    }
-    void Laser()
-    {
-        lineRenderer.SetPosition(0, firePoint.position);
-        lineRenderer.SetPosition(1, target.position);
     }
 
     public void OnDamage(float Damage)
@@ -121,5 +142,4 @@ public class Turret : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
     }
-
 }

@@ -49,13 +49,13 @@ public class BlueEnemy : Enemy
         // 플레이어가 멀어지면 타겟을 웨이포인트로 변경하여 기존 이동경로로 복귀
     }
 
-    public override void AttackPlayer()
+    public override void AttackAction()
     {
-        if (target == null || !isChase)
+        if (target == null) // || !isChase
             return;
         Vector3 dir = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(dir);
-        animator.SetBool("isAttack", true);
+        //animator.SetBool("isAttack", true);
         if (transform.GetChild(0).tag == "BlueAd")
         {
             if (target.tag == "RedTower")

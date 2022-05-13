@@ -71,10 +71,12 @@
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Billboard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\RPG Monster Wave PBR\Shaders\PBRMaskTint.shader" />
     <None Include="Assets\__www.unityassetcollection.com__.txt" />
+    <None Include="Assets\_www.unityassetcollection.com.txt" />
     <None Include="Assets\RPG Monster Wave PBR\SRP\HowToTestSRPs.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -49,7 +49,7 @@ public class RedEnemy : Enemy
         // 플레이어가 멀어지면 타겟을 웨이포인트로 변경하여 기존 이동경로로 복귀
     }
 
-    public override void AttackPlayer()
+    public override void AttackAction()
     {
         if (target == null || !isChase)
             return;

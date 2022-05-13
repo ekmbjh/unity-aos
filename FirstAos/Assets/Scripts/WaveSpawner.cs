@@ -24,7 +24,7 @@ public class WaveSpawner : MonoBehaviour
         if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
-            countdown = 10f;
+            countdown = 20f;
         }
 
         countdown -= Time.deltaTime;
@@ -32,17 +32,19 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        for (int i = 0; i < 3; i++)
-        {
-            SpawnAdEnemy();
-            yield return new WaitForSeconds(0.8f);
-        }
+        //for (int i = 0; i < 1; i++)
+        //{
+        //    SpawnAdEnemy();
+        //    yield return new WaitForSeconds(0.8f);
+        //}
 
-        for (int j = 0; j < 2; j++)
-        {
-            SpawnApEnemy();
-            yield return new WaitForSeconds(1f);
-        }
+        //yield return new WaitForSeconds(1f);
+
+        //for (int j = 0; j < 1; j++)
+        //{
+            //SpawnApEnemy();
+            //yield return new WaitForSeconds(1f);
+        //}
 
         for (int k = 0; k < 1; k++)
         {

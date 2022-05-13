@@ -19,6 +19,11 @@ public class EnemyBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         if (enemyBulletTag == "Red")
         {
             if (target == null) //|| target.tag != "Blue"
@@ -41,7 +46,7 @@ public class EnemyBullet : MonoBehaviour
         //    return;
         //}
 
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = target.position - transform.position + new Vector3(0, 1.2f, 0);
         float distanceThisFrame = speed * Time.deltaTime;
 
         transform.LookAt(target);
@@ -49,6 +54,7 @@ public class EnemyBullet : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.position) < 0.5f)
         {
+            
             //if (target.tag != "Red" || target.tag != "Blue") return;
             if (enemyBulletTag == "Blue")
             {

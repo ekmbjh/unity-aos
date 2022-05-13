@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour
     private int wavepointIndex = 0;
 
     public float health = 100f;
+    public float maxhealth = 100f;
     public float damage = 10f;
     public Transform player;
     public bool isChase = false;
@@ -24,6 +26,9 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
 
     public Animator animator;
+    public bool isDie = false;
+
+    public Slider slider;
 
     public void Start()
     {
@@ -43,10 +48,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        slider.value = health / maxhealth;
         rigidbody.velocity = Vector3.zero;
+        if (isDie)
+        {
+            return;
+        }
+
         if (health <= 0f)
         {
-            Destroy(gameObject);
+            StartCoroutine(Die());
         }
         if (target == null && !isChase)
         {
@@ -97,10 +108,11 @@ public class Enemy : MonoBehaviour
             Vector3 direction = target.transform.position - transform.position;
             if (Vector3.Distance(target.position, transform.position) <= attackRange)
             {
-                if (attackCntDown <= 0f)
+                if (attackCntDown <= 0f && !isDie)
                 {
                     agent.enabled = false;
-                    AttackPlayer();
+                    animator.SetBool("isAttack", true);
+                    //AttackPlayer();
                     attackCntDown = 2f;
                 }
             }
@@ -117,7 +129,7 @@ public class Enemy : MonoBehaviour
         //}
     }
 
-    public virtual void AttackPlayer()
+    public virtual void AttackAction()
     {
 
     }
@@ -154,8 +166,6 @@ public class Enemy : MonoBehaviour
         //{
         //    //Debug.DrawLine(transform.position, target.position);
         //}
-
-
     }
     void GetNextWayPoint()
     {
@@ -203,6 +213,25 @@ public class Enemy : MonoBehaviour
     public void OnDamage(float playerDamage)
     {
         health -= playerDamage;
+    }
+
+    IEnumerator Die()
+    {
+        //if (isDie)
+        //{
+        //    //agent.ResetPath();
+        //    //agent.isStopped = true;
+        //    //agent.updatePosition = false;
+        //    //agent.updateRotation = false;
+        //    //agent.velocity = Vector3.zero;
+        //}
+        isDie = true;
+        animator.SetBool("doDie", true);
+        agent.enabled = false;
+
+        yield return new WaitForSeconds(2f);
+
+        Destroy(gameObject);
     }
 }
 //if (Physics.SphereCast(transform.position, 5f, Vector3.up, out RaycastHit hitinfo, 0.1f, LayerMask.GetMask("Player")))
