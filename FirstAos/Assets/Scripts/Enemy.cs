@@ -210,9 +210,9 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void OnDamage(float playerDamage)
+    public void OnDamage(float Damage)
     {
-        health -= playerDamage;
+        health -= Damage;
     }
 
     IEnumerator Die()

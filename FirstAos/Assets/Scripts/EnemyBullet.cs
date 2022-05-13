@@ -24,26 +24,21 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        if (enemyBulletTag == "Red")
-        {
-            if (target == null) //|| target.tag != "Blue"
-            {
-                Destroy(gameObject);
-                return;
-            }
-        }
-        else if (enemyBulletTag == "Blue")
-        {
-            if (target == null) //|| target.tag != "Red"
-            {
-                Destroy(gameObject);
-                return;
-            }
-        }
-        //if (target == null)
+        //if (enemyBulletTag == "Red")
         //{
-        //    Destroy(gameObject);
-        //    return;
+        //    if (target == null) //|| target.tag != "Blue"
+        //    {
+        //        Destroy(gameObject);
+        //        return;
+        //    }
+        //}
+        //else if (enemyBulletTag == "Blue")
+        //{
+        //    if (target == null) //|| target.tag != "Red"
+        //    {
+        //        Destroy(gameObject);
+        //        return;
+        //    }
         //}
 
         Vector3 dir = target.position - transform.position + new Vector3(0, 1.2f, 0);
@@ -51,10 +46,10 @@ public class EnemyBullet : MonoBehaviour
 
         transform.LookAt(target);
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
-
-        if (Vector3.Distance(transform.position, target.position) < 0.5f)
+        float rangeToAnemy = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(target.position.x, 0, target.position.z));
+        if (rangeToAnemy < 0.5f)
         {
-            
+            print("target near");   
             //if (target.tag != "Red" || target.tag != "Blue") return;
             if (enemyBulletTag == "Blue")
             {
@@ -76,6 +71,7 @@ public class EnemyBullet : MonoBehaviour
             }
             else if (enemyBulletTag == "Red")
             {
+                print("tag red in");
                 if (target.tag == "BlueTower")
                 {
                     Turret turret = target.GetComponentInParent<Turret>();
@@ -88,6 +84,7 @@ public class EnemyBullet : MonoBehaviour
                 }
                 else
                 {
+                    print("attack and damage");
                     BlueEnemy enemy = target.GetComponentInParent<BlueEnemy>();
                     enemy.OnDamage(damage);
                 }
@@ -95,7 +92,7 @@ public class EnemyBullet : MonoBehaviour
 
             //PlayerStats playerHealth = target.GetComponent<PlayerStats>();
             //playerHealth.health -= damage;
-
+            print(" destroy");
             Destroy(gameObject);
         }
     }
