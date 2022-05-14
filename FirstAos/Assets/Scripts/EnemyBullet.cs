@@ -67,6 +67,7 @@ public class EnemyBullet : MonoBehaviour
                 {
                     RedEnemy enemy = target.GetComponentInParent<RedEnemy>();
                     enemy.OnDamage(damage);
+
                 }
             }
             else if (enemyBulletTag == "Red")

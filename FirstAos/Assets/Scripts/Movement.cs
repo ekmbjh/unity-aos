@@ -9,6 +9,9 @@ public class Movement : MonoBehaviour
     public CharacterController controller;
     public Vector3 movePoint;
     public Camera veiw;
+    public Animator animator;
+
+    public Vector3 updateMovePoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +19,20 @@ public class Movement : MonoBehaviour
         veiw = Camera.main;
         controller = GetComponent<CharacterController>();
         movePoint = transform.position;
+        animator = transform.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        print(Vector3.Distance(new Vector3(movePoint.x, transform.position.y, movePoint.z), transform.position));
+        if (Vector3.Distance(new Vector3(movePoint.x, transform.position.y, movePoint.z), transform.position) < 0.5f)
+        {
+            animator.SetBool("isRun", false);
+        }
         if (Input.GetMouseButtonDown(1))
         {
+            animator.SetBool("isRun", true);
             Ray ray = veiw.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin, movePoint * 10f, Color.red, 1f);
 
@@ -48,7 +58,7 @@ public class Movement : MonoBehaviour
     void Move()
     {
 
-        Vector3 updateMovePoint = (movePoint - transform.position).normalized * speed;
+        updateMovePoint = (movePoint - transform.position).normalized * speed;
         //transform.Translate(updateMovePoint.normalized * speed * Time.deltaTime, Space.World);
         controller.SimpleMove(updateMovePoint);
     }
