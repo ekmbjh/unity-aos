@@ -44,13 +44,11 @@ public class Movement : MonoBehaviour
                 movePoint = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
                 if (hitInfo.transform.tag == "Red")
                 {
-                    print(hitInfo.transform);
-                    isTracking = true;
                     if (Vector3.Distance(movePoint, transform.position) < 2f)
                     {
-                        print(attackCount);
                         if (attackCount <= 0)
                         {
+                            isTracking = true;
                             movePoint = transform.position;
                             StartCoroutine(AttackGo(hitInfo.transform));
                         }
@@ -62,7 +60,7 @@ public class Movement : MonoBehaviour
                 }
                 else
                 {
-                    isTracking = false;
+
                     //movePoint = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
 
 
@@ -76,14 +74,15 @@ public class Movement : MonoBehaviour
             attackCount = 2f;
             Enemy enemy = _enemy.GetComponent<RedEnemy>();
             Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
-
-            if (dir != Vector3.zero)
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
+            transform.LookAt(_enemy);
+            //if (dir != Vector3.zero)
+            //    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
 
             animator.SetBool("isAttack", true);
             enemy.OnDamage(damage);
             yield return new WaitForSeconds(1f);
             animator.SetBool("isAttack", false);
+            isTracking = false;
 
         }
 
@@ -96,7 +95,11 @@ public class Movement : MonoBehaviour
 
         if (Vector3.Distance(transform.position, movePoint) > 0.1f)
         {
-            Move();
+            if (!isTracking)
+            {
+                Move();
+
+            }
         }
     }
 

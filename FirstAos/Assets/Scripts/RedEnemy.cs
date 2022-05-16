@@ -15,7 +15,7 @@ public class RedEnemy : Enemy
 
     void OnTriggerStay(Collider other)
     {
-        if (other.tag == "BlueAd" || other.tag == "BlueAp" || other.tag == "BlueCanon" || other.tag == "BlueTower" || other.tag == "BlueNexus")
+        if (other.tag == "BlueAd" || other.tag == "BlueAp" || other.tag == "BlueCanon" || other.tag == "BlueTower" || other.tag == "BlueNexus" || other.tag == "BluePlayer")
         {
             isChase = true;
             enemies = other.gameObject.GetComponents<Transform>();

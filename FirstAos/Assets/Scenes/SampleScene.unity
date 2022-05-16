@@ -5639,6 +5639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Assasin
       objectReference: {fileID: 0}
+    - target: {fileID: 361440869000727040, guid: dba164be86cb4c84d9f406835a0b48d4, type: 3}
+      propertyPath: m_TagString
+      value: BluePlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 3701749259625707539, guid: dba164be86cb4c84d9f406835a0b48d4, type: 3}
       propertyPath: m_RootOrder
       value: 1

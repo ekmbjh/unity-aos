@@ -19,6 +19,7 @@ TagManager:
   - RedWay
   - BlueNexus
   - RedNexus
+  - BluePlayer
   layers:
   - Default
   - TransparentFX
