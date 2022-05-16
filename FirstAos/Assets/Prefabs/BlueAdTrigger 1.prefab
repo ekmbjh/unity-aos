@@ -180,7 +180,7 @@ MonoBehaviour:
   target: {fileID: 0}
   health: 100
   maxhealth: 100
-  damage: 10
+  damage: 0
   player: {fileID: 0}
   isChase: 0
   attackRange: 3
@@ -1224,7 +1224,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0.15}

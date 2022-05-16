@@ -75,9 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\RPG Monster Wave PBR\Shaders\PBRMaskTint.shader" />
+    <None Include="Assets\RRFreelance\CustomizableWeapons\Shaders\PB_VertexColorPushVerts.shader" />
+    <None Include="Assets\RRFreelance\CustomizableWeapons\HowToUse.txt" />
     <None Include="Assets\__www.unityassetcollection.com__.txt" />
     <None Include="Assets\_www.unityassetcollection.com.txt" />
     <None Include="Assets\RPG Monster Wave PBR\SRP\HowToTestSRPs.txt" />
+    <None Include="Assets\RRFreelance\CustomizableWeapons\Shaders\PB_VertexColor.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

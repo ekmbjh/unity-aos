@@ -15,21 +15,25 @@ public class CameraController : MonoBehaviour
             transform.position = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z - 12f);
         }
 
-        if (Input.mousePosition.x <= Screen.height - panBorderThickness)
+
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
-        }
-        if (Input.mousePosition.x >= panBorderThickness)
-        {
-            transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
-        }
-        if (Input.mousePosition.y >= Screen.width - panBorderThickness)
-        {
-            transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
-        }
-        if (Input.mousePosition.y <= panBorderThickness)
-        {
-            transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
+            if (Input.mousePosition.x <= Screen.height - panBorderThickness)
+            {
+                transform.Translate(Vector3.forward * panSpeed * Time.deltaTime, Space.World);
+            }
+            if (Input.mousePosition.x >= panBorderThickness)
+            {
+                transform.Translate(Vector3.back * panSpeed * Time.deltaTime, Space.World);
+            }
+            if (Input.mousePosition.y >= Screen.width - panBorderThickness)
+            {
+                transform.Translate(Vector3.right * panSpeed * Time.deltaTime, Space.World);
+            }
+            if (Input.mousePosition.y <= panBorderThickness)
+            {
+                transform.Translate(Vector3.left * panSpeed * Time.deltaTime, Space.World);
+            }
         }
 
     }

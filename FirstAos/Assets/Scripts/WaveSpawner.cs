@@ -32,11 +32,11 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        //for (int i = 0; i < 1; i++)
-        //{
-        //    SpawnAdEnemy();
-        //    yield return new WaitForSeconds(0.8f);
-        //}
+        for (int i = 0; i < 1; i++)
+        {
+            SpawnAdEnemy();
+            yield return new WaitForSeconds(0.8f);
+        }
 
         yield return new WaitForSeconds(1f);
 
@@ -56,7 +56,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnAdEnemy()
     {
         Instantiate(adEnemyPrefab, redTeamSpawnPoint.position, redTeamSpawnPoint.rotation);
-        Instantiate(adEnemyPrefabBlue, blueTeamSpawnPoint.position, blueTeamSpawnPoint.rotation);
+        //Instantiate(adEnemyPrefabBlue, blueTeamSpawnPoint.position, blueTeamSpawnPoint.rotation);
     }
 
     void SpawnApEnemy()

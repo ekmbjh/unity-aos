@@ -28,28 +28,28 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo))
-            {
-                //&& 
-                if (hitInfo.collider.tag == enemyTag)
-                {
-                    Vector3 dir = new Vector3(transform.position.x, hitInfo.point.y, transform.position.z);
-                    if (Vector3.Distance(dir, hitInfo.point) < 3f)
-                    {
-                        if (attackCntDown <= 0f)
-                        {
-                            Attack(hitInfo.collider);
-                            attackCntDown = 2f;
-                        }
-                    }
-                }
-            }
-        }
-        attackCntDown -= Time.deltaTime;
+        //    if (Physics.Raycast(ray, out RaycastHit hitInfo))
+        //    {
+        //        //&& 
+        //        if (hitInfo.collider.tag == enemyTag)
+        //        {
+        //            Vector3 dir = new Vector3(transform.position.x, hitInfo.point.y, transform.position.z);
+        //            if (Vector3.Distance(dir, hitInfo.point) < 3f)
+        //            {
+        //                if (attackCntDown <= 0f)
+        //                {
+        //                    Attack(hitInfo.collider);
+        //                    attackCntDown = 2f;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+        //attackCntDown -= Time.deltaTime;
     }
 
     //public static void OnDamage(float enemyDamage)
@@ -57,10 +57,10 @@ public class PlayerStats : MonoBehaviour
     //    health -= enemyDamage;
     //}
 
-    void Attack(Collider enemy)
-    {
-        Enemy _enemy = enemy.GetComponent<Enemy>();
-        _enemy.OnDamage(Damage);
-        Debug.Log("Attack");
-    }
+    //void Attack(Collider enemy)
+    //{
+    //    Enemy _enemy = enemy.GetComponent<Enemy>();
+    //    _enemy.OnDamage(Damage);
+    //    Debug.Log("Attack");
+    //}
 }

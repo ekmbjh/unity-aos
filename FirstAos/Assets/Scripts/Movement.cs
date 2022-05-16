@@ -12,6 +12,10 @@ public class Movement : MonoBehaviour
     public Animator animator;
 
     public Vector3 updateMovePoint;
+
+    public bool isTracking = false;
+    public float attackCount = 0;
+    public float damage = 10f;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,6 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Vector3.Distance(new Vector3(movePoint.x, transform.position.y, movePoint.z), transform.position));
         if (Vector3.Distance(new Vector3(movePoint.x, transform.position.y, movePoint.z), transform.position) < 0.5f)
         {
             animator.SetBool("isRun", false);
@@ -38,16 +41,58 @@ public class Movement : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
-                movePoint = hitInfo.point;
+                movePoint = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+                if (hitInfo.transform.tag == "Red")
+                {
+                    print(hitInfo.transform);
+                    isTracking = true;
+                    if (Vector3.Distance(movePoint, transform.position) < 2f)
+                    {
+                        print(attackCount);
+                        if (attackCount <= 0)
+                        {
+                            movePoint = transform.position;
+                            StartCoroutine(AttackGo(hitInfo.transform));
+                        }
+                    }
+                    else
+                    {
+                        //movePoint = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+                    }
+                }
+                else
+                {
+                    isTracking = false;
+                    //movePoint = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
+
+
+                }
             }
         }
+        attackCount -= Time.deltaTime;
 
-        if (movePoint != null)
+        IEnumerator AttackGo(Transform _enemy)
         {
+            attackCount = 2f;
+            Enemy enemy = _enemy.GetComponent<RedEnemy>();
             Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
-            if(dir!= Vector3.zero)
+
+            if (dir != Vector3.zero)
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
+
+            animator.SetBool("isAttack", true);
+            enemy.OnDamage(damage);
+            yield return new WaitForSeconds(1f);
+            animator.SetBool("isAttack", false);
+
         }
+
+        //if (movePoint != null)
+        //{
+        //    Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
+        //    if (dir != Vector3.zero)
+        //        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
+        //}
 
         if (Vector3.Distance(transform.position, movePoint) > 0.1f)
         {
@@ -57,9 +102,14 @@ public class Movement : MonoBehaviour
 
     void Move()
     {
-
         updateMovePoint = (movePoint - transform.position).normalized * speed;
         //transform.Translate(updateMovePoint.normalized * speed * Time.deltaTime, Space.World);
+
+        Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
+        if (dir != Vector3.zero)
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
+
         controller.SimpleMove(updateMovePoint);
+
     }
 }
