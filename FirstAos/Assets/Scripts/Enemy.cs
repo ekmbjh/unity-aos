@@ -30,10 +30,15 @@ public class Enemy : MonoBehaviour
 
     public Slider slider;
 
+    public float enemyExp;
+
+    public bool expUpDone = false;
+
     public void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        rigidbody = GetComponentInChildren<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
+
         if (transform.tag == "Red")
         {
             target = Waypoint.points[0];
@@ -42,14 +47,27 @@ public class Enemy : MonoBehaviour
         {
             target = WaypointBlue.bluePoints[0];
         }
-        animator = GetComponentInChildren<Animator>();
+        animator = transform.GetComponent<Animator>();
+
+        if (transform.GetChild(0).tag == "RedAd")
+        {
+            enemyExp = 20;
+        }
+        else if (transform.GetChild(0).tag == "RedAp")
+        {
+            enemyExp = 30;
+        }
+        else if (transform.GetChild(0).tag == "RedCanon")
+        {
+            enemyExp = 50;
+        }
     }
 
     // Update is called once per frame
     public void Update()
     {
         slider.value = health / maxhealth;
-        rigidbody.velocity = Vector3.zero;
+        //rigidbody.velocity = Vector3.zero;
         if (isDie)
         {
             return;
@@ -216,14 +234,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Die()
     {
-        //if (isDie)
-        //{
-        //    //agent.ResetPath();
-        //    //agent.isStopped = true;
-        //    //agent.updatePosition = false;
-        //    //agent.updateRotation = false;
-        //    //agent.velocity = Vector3.zero;
-        //}
+
         isDie = true;
         animator.SetBool("doDie", true);
         agent.enabled = false;

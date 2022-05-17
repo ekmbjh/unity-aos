@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
 
     public bool isTracking = false;
     public float attackCount = 0;
-    public float damage = 10f;
+    public float damage = 50f;
     
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class Movement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         movePoint = transform.position;
         animator = transform.GetComponent<Animator>();
+        PlayerStats stats = GetComponent<PlayerStats>();
         
     }
 
@@ -76,7 +77,12 @@ public class Movement : MonoBehaviour
         IEnumerator AttackGo(Transform _enemy)
         {
             attackCount = 2f;
-            Enemy enemy = _enemy.GetComponent<RedEnemy>();
+            RedEnemy enemy = _enemy.GetComponent<RedEnemy>();
+            //if (enemy.health <= 0)
+            //{
+            //    Debug.Log("health 0");
+            //    stats.exp += enemy.exp;
+            //}
             Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
             transform.LookAt(_enemy);
             //if (dir != Vector3.zero)

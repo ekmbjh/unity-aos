@@ -26,24 +26,20 @@ public class RedEnemy : Enemy
             target = other.transform;
             if (agent.enabled)
                 agent.SetDestination(target.position);
-            //foreach (Transform otherEnemy in enemies)
-            //{
-            //    distanceToEnemy = Vector3.Distance(otherEnemy.position, transform.position);
-            //    if (distanceToEnemy < shortestDistance)
-            //    {
-            //        shortestDistance = distanceToEnemy;
-            //        nearestEnemy = otherEnemy;
-            //        enemiesIndex = Array.IndexOf(enemies, otherEnemy);
-            //    }
-            //}
-            //if (nearestEnemy != null && shortestDistance <= range)
-            //{
-            //    target = nearestEnemy.transform;
-            //    //targetEnemy = nearestEnemy.GetComponent<Enemy>();
-            //}
         }
 
+        if (other.tag == "BluePlayer" && isDie)
+        {
+            if (expUpDone)
+            {
+                return;
+            }
+            expUpDone = true;
+            PlayerStats playerStats = other.GetComponent<PlayerStats>();
+            playerStats.exp += enemyExp;
+        }
     }
+
     void OnTriggerExit(Collider other)
     {
         // 플레이어가 멀어지면 타겟을 웨이포인트로 변경하여 기존 이동경로로 복귀
