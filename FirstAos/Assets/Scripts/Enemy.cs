@@ -62,7 +62,6 @@ public class Enemy : MonoBehaviour
         if (target == null && !isChase)
         {
             //isChase = false;
-            print("BackToLoad");
             BackToLoad();
         }
         //else if (target == null && enemies != null)

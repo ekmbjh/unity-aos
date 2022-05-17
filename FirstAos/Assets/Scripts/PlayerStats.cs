@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
     public float health = 100f;
+    public float maxHealth = 100f;
     public float Damage = 10f;
 
+
+    public Slider slider;
     Camera cam;
 
     string enemyTag = "Enemy";
@@ -14,10 +18,13 @@ public class PlayerStats : MonoBehaviour
 
     private float attackCntDown;
 
+    public bool isDead = false;
+    public Animator animator;
 
     void Awake()
     {
         myposition = this.transform;
+        animator = GetComponent<Animator>();
     }
     // Start is called before the first frame update
     void Start()
@@ -28,6 +35,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        slider.value = health / maxHealth;
         //if (Input.GetMouseButtonDown(1))
         //{
         //    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -50,12 +58,25 @@ public class PlayerStats : MonoBehaviour
         //    }
         //}
         //attackCntDown -= Time.deltaTime;
+        if (isDead) { return; }
+        if (health <= 0)
+        {
+            isDead = true;
+            animator.SetBool("isDead", true);
+            Invoke("Die", 3f);
+            
+        }
     }
 
-    //public static void OnDamage(float enemyDamage)
-    //{
-    //    health -= enemyDamage;
-    //}
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void OnDamage(float enemyDamage)
+    {
+        health -= enemyDamage;
+    }
 
     //void Attack(Collider enemy)
     //{

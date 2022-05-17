@@ -16,6 +16,7 @@ public class Movement : MonoBehaviour
     public bool isTracking = false;
     public float attackCount = 0;
     public float damage = 10f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +25,14 @@ public class Movement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         movePoint = transform.position;
         animator = transform.GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        PlayerStats stats = transform.GetComponent<PlayerStats>();
+        if (stats.isDead) { return; }
         if (Vector3.Distance(new Vector3(movePoint.x, transform.position.y, movePoint.z), transform.position) < 0.5f)
         {
             animator.SetBool("isRun", false);

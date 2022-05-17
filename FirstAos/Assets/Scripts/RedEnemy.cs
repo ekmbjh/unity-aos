@@ -68,6 +68,11 @@ public class RedEnemy : Enemy
                 Nexus nexus = target.GetComponentInParent<Nexus>();
                 nexus.OnDamage(damage);
             }
+            else if (target.tag == "BluePlayer")
+            {
+                PlayerStats playerStats = target.GetComponentInParent<PlayerStats>();
+                playerStats.OnDamage(damage);
+            }
             else
             {
                 BlueEnemy enemyhealth = target.GetComponentInParent<BlueEnemy>();
