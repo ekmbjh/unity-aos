@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\meteo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\RPG Monster Wave PBR\Shaders\PBRMaskTint.shader" />
@@ -79,7 +80,9 @@
     <None Include="Assets\RRFreelance\CustomizableWeapons\HowToUse.txt" />
     <None Include="Assets\__www.unityassetcollection.com__.txt" />
     <None Include="Assets\_www.unityassetcollection.com.txt" />
+    <None Include="Assets\Hovl Studio\Procedural fire\Shaders\FireSphere.shader" />
     <None Include="Assets\RPG Monster Wave PBR\SRP\HowToTestSRPs.txt" />
+    <None Include="Assets\Hovl Studio\Procedural fire\Demo scene\Readme.txt" />
     <None Include="Assets\RRFreelance\CustomizableWeapons\Shaders\PB_VertexColor.shader" />
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,9 @@ public class Movement : MonoBehaviour
     public bool isTracking = false;
     public float attackCount = 0;
     public float damage = 50f;
-    
+
+    public GameObject meteo;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,22 +28,25 @@ public class Movement : MonoBehaviour
         movePoint = transform.position;
         animator = transform.GetComponent<Animator>();
         PlayerStats stats = GetComponent<PlayerStats>();
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerStats stats = transform.GetComponent<PlayerStats>();
+        Ray ray = veiw.ScreenPointToRay(Input.mousePosition);
+        
         if (stats.isDead) { return; }
+
         if (Vector3.Distance(new Vector3(movePoint.x, transform.position.y, movePoint.z), transform.position) < 0.5f)
         {
             animator.SetBool("isRun", false);
         }
+
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetBool("isRun", true);
-            Ray ray = veiw.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin, movePoint * 10f, Color.red, 1f);
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
@@ -74,34 +79,6 @@ public class Movement : MonoBehaviour
         }
         attackCount -= Time.deltaTime;
 
-        IEnumerator AttackGo(Transform _enemy)
-        {
-            attackCount = 2f;
-            RedEnemy enemy = _enemy.GetComponent<RedEnemy>();
-            //if (enemy.health <= 0)
-            //{
-            //    Debug.Log("health 0");
-            //    stats.exp += enemy.exp;
-            //}
-            Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
-            transform.LookAt(_enemy);
-            //if (dir != Vector3.zero)
-            //    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
-
-            animator.SetBool("isAttack", true);
-            enemy.OnDamage(damage);
-            yield return new WaitForSeconds(1f);
-            animator.SetBool("isAttack", false);
-            isTracking = false;
-
-        }
-
-        //if (movePoint != null)
-        //{
-        //    Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
-        //    if (dir != Vector3.zero)
-        //        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
-        //}
 
         if (Vector3.Distance(transform.position, movePoint) > 0.1f)
         {
@@ -111,6 +88,37 @@ public class Movement : MonoBehaviour
 
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Instantiate(meteo, transform.position + new Vector3(0, 20f, 0), transform.rotation);
+            meteo Meteo = meteo.GetComponent<meteo>();
+            if (Physics.Raycast(ray, out RaycastHit hitInfo))
+            {
+                Meteo.moveMeteo(hitInfo.point);
+            }
+        }
+    }
+    IEnumerator AttackGo(Transform _enemy)
+    {
+        attackCount = 2f;
+        RedEnemy enemy = _enemy.GetComponent<RedEnemy>();
+        //if (enemy.health <= 0)
+        //{
+        //    Debug.Log("health 0");
+        //    stats.exp += enemy.exp;
+        //}
+        Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
+        transform.LookAt(_enemy);
+        //if (dir != Vector3.zero)
+        //    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
+
+        animator.SetBool("isAttack", true);
+        enemy.OnDamage(damage);
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("isAttack", false);
+        isTracking = false;
+
     }
 
     void Move()

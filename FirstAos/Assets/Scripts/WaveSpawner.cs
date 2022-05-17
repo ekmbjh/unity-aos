@@ -40,17 +40,17 @@ public class WaveSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        //for (int j = 0; j < 1; j++)
-        //{
-        //    SpawnApEnemy();
-        //    yield return new WaitForSeconds(1f);
-        //}
+        for (int j = 0; j < 1; j++)
+        {
+            SpawnApEnemy();
+            yield return new WaitForSeconds(1f);
+        }
 
-        //for (int k = 0; k < 1; k++)
-        //{
-        //    SpawnCanonEnemy();
-        //    yield return new WaitForSeconds(1f);
-        //}
+        for (int k = 0; k < 1; k++)
+        {
+            SpawnCanonEnemy();
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     void SpawnAdEnemy()

@@ -335,6 +335,7 @@
 "Assets/Scripts/CameraController.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyBullet.cs"
+"Assets/Scripts/meteo.cs"
 "Assets/Scripts/Movement.cs"
 "Assets/Scripts/Nexus.cs"
 "Assets/Scripts/PlayerAttack.cs"

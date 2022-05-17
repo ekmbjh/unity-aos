@@ -3579,8 +3579,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.32984188, y: 0.6354794, z: -0.3447669, w: 0.607047}
-  m_LocalPosition: {x: -8.603445, y: 14.144442, z: -137.41916}
+  m_LocalRotation: {x: 0.35581127, y: 0.6100888, z: -0.3541086, w: 0.6130229}
+  m_LocalPosition: {x: -19.681374, y: 28.263329, z: -136.56085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5545,6 +5545,7 @@ MonoBehaviour:
   isTracking: 0
   attackCount: 0
   damage: 10
+  meteo: {fileID: 0}
 --- !u!136 &1682008944
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7348,6 +7349,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Assasin
       objectReference: {fileID: 0}
+    - target: {fileID: 8035670219993642541, guid: 028b25e485a348540a5b0b9be6f6ea84, type: 3}
+      propertyPath: meteo
+      value: 
+      objectReference: {fileID: 3500769310220213722, guid: ba776f1c657ea1d429cde7a4490c81ed, type: 3}
     - target: {fileID: 8035670219993642541, guid: 028b25e485a348540a5b0b9be6f6ea84, type: 3}
       propertyPath: damage
       value: 50
