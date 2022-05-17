@@ -47,6 +47,11 @@ public class RedEnemy : Enemy
     void OnTriggerExit(Collider other)
     {
         // 플레이어가 멀어지면 타겟을 웨이포인트로 변경하여 기존 이동경로로 복귀
+        if (other.tag == "BluePlayer")
+        {
+            target = null;
+
+        }
     }
 
     public override void AttackAction()
