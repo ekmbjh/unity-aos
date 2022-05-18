@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class meteo : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 20f;
     public Vector3 dir;
 
     public float damage = 100f;
@@ -15,18 +15,25 @@ public class meteo : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (transform.position.y < -10f)
         {
             Destroy(gameObject);
         }
-        transform.LookAt(dir);
-        transform.Translate(dir * speed * Time.deltaTime);
+        Debug.Log(dir);
+        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
+        
+        
+
     }
     public void moveMeteo(Vector3 target)
     {
-        dir = new Vector3(target.x, -1, target.z) - transform.position;
+        
+        dir = new Vector3(target.x, 0, target.z) - transform.position;
+        Debug.LogWarning(dir);
+        transform.LookAt(target);
+
     }
 
     void OnTriggerEnter(Collider other)

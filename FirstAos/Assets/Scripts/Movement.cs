@@ -91,10 +91,12 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Instantiate(meteo, transform.position + new Vector3(0, 20f, 0), transform.rotation);
-            meteo Meteo = meteo.GetComponent<meteo>();
+            GameObject me = Instantiate(meteo, transform.position + new Vector3(0, 20f, 0), transform.rotation);
+            meteo Meteo = me.GetComponent<meteo>();
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
+                Debug.DrawLine(transform.position + new Vector3(0, 20f, 0), hitInfo.point, Color.yellow, 1.5f);
+                //Vector3 dir = meteo.transform.position - hitInfo.point;
                 Meteo.moveMeteo(hitInfo.point);
             }
         }

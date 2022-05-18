@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3170068814575406331}
   - component: {fileID: 1822429324130336366}
   - component: {fileID: 6118737187354208575}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: meteo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3500769310220213722}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.11720248, y: -0.7716956, z: 0.14898144, w: 0.60708654}
   m_LocalPosition: {x: 0.30332017, y: 4.2790546, z: -133.85466}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3500769310220213722}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 672a11821794ea24ba9ab9519cf6a835, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  dir: {x: -3.874365, y: -5.2790546, z: -8.005554}
+  speed: 15
+  dir: {x: -10.391701, y: -4.2790546, z: -2.5171509}
   damage: 100
 --- !u!1001 &3259508191383511185
 PrefabInstance:
@@ -121,13 +121,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 394446313979172227}
     m_Modifications:
+    - target: {fileID: 1289021106497550, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1602288087390512, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1900756431413560, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
       propertyPath: m_Name
       value: Magic fire 2
       objectReference: {fileID: 0}
     - target: {fileID: 1900756431413560, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900756431413560, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946108650276192, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4283311113454432, guid: 529eb4216865eba419c1a4a68d0b0388, type: 3}
       propertyPath: m_RootOrder
