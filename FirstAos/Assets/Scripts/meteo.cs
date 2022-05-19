@@ -21,7 +21,7 @@ public class meteo : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        Debug.Log(dir);
+        transform.LookAt(dir);
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
         
         
@@ -31,9 +31,6 @@ public class meteo : MonoBehaviour
     {
         
         dir = new Vector3(target.x, 0, target.z) - transform.position;
-        Debug.LogWarning(dir);
-        transform.LookAt(target);
-
     }
 
     void OnTriggerEnter(Collider other)
