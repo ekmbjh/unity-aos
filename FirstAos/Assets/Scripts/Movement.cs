@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class Movement : MonoBehaviour
 
     public GameObject meteo;
 
+    public float skillCount = 0;
+    public Button skillMeteo;
+    public Text skilCountText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +33,8 @@ public class Movement : MonoBehaviour
         movePoint = transform.position;
         animator = transform.GetComponent<Animator>();
         PlayerStats stats = GetComponent<PlayerStats>();
-
+        skillMeteo.interactable = false;
+        skilCountText.enabled = false;
     }
 
     // Update is called once per frame
@@ -36,7 +42,7 @@ public class Movement : MonoBehaviour
     {
         PlayerStats stats = transform.GetComponent<PlayerStats>();
         Ray ray = veiw.ScreenPointToRay(Input.mousePosition);
-        
+
         if (stats.isDead) { return; }
 
         if (Vector3.Distance(new Vector3(movePoint.x, transform.position.y, movePoint.z), transform.position) < 0.5f)
@@ -89,10 +95,13 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && skillCount <= 0f)
         {
+            skillMeteo.interactable = false;
+            skilCountText.enabled = true;
             GameObject me = Instantiate(meteo, transform.position + new Vector3(0, 20f, 0), transform.rotation);
             meteo Meteo = me.GetComponent<meteo>();
+            skillCount = 10f;
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
                 Debug.DrawLine(transform.position + new Vector3(0, 20f, 0), hitInfo.point, Color.yellow, 1.5f);
@@ -100,6 +109,13 @@ public class Movement : MonoBehaviour
                 Meteo.moveMeteo(hitInfo.point);
             }
         }
+        skilCountText.text = skillCount.ToString("0");
+        if (skillCount <= 0f && stats.level >= 2f)
+        {
+            skillMeteo.interactable = true;
+            skilCountText.enabled = false;
+        }
+        skillCount -= Time.deltaTime;
     }
     IEnumerator AttackGo(Transform _enemy)
     {

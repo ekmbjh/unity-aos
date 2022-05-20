@@ -18,6 +18,8 @@ public class PlayerStats : MonoBehaviour
     public bool isDead = false;
     public Animator animator;
 
+    public Text levelText;
+
     void Awake()
     {
         myposition = this.transform;
@@ -45,6 +47,7 @@ public class PlayerStats : MonoBehaviour
             level += 1;
             exp = 0;
         }
+        levelText.text = "Player Level : " + level;
     }
 
     public void Die()
