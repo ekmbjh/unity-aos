@@ -24,22 +24,7 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        //if (enemyBulletTag == "Red")
-        //{
-        //    if (target == null) //|| target.tag != "Blue"
-        //    {
-        //        Destroy(gameObject);
-        //        return;
-        //    }
-        //}
-        //else if (enemyBulletTag == "Blue")
-        //{
-        //    if (target == null) //|| target.tag != "Red"
-        //    {
-        //        Destroy(gameObject);
-        //        return;
-        //    }
-        //}
+
 
         Vector3 dir = target.position - transform.position + new Vector3(0, 1.2f, 0);
         float distanceThisFrame = speed * Time.deltaTime;
@@ -91,8 +76,6 @@ public class EnemyBullet : MonoBehaviour
                 }
             }
 
-            //PlayerStats playerHealth = target.GetComponent<PlayerStats>();
-            //playerHealth.health -= damage;
             print(" destroy");
             Destroy(gameObject);
         }

@@ -26,27 +26,15 @@ public class BlueEnemy : Enemy
             target = other.transform;
             if (agent.enabled)
                 agent.SetDestination(target.position);
-            //foreach (Transform otherEnemy in enemies)
-            //{
-            //    distanceToEnemy = Vector3.Distance(otherEnemy.position, transform.position);
-            //    if (distanceToEnemy < shortestDistance)
-            //    {
-            //        shortestDistance = distanceToEnemy;
-            //        nearestEnemy = otherEnemy;
-            //        enemiesIndex = Array.IndexOf(enemies, otherEnemy);
-            //    }
-            //}
-            //if (nearestEnemy != null && shortestDistance <= range)
-            //{
-            //    target = nearestEnemy.transform;
-            //    //targetEnemy = nearestEnemy.GetComponent<Enemy>();
-            //}
         }
     }
-
     void OnTriggerExit(Collider other)
     {
-        // 플레이어가 멀어지면 타겟을 웨이포인트로 변경하여 기존 이동경로로 복귀
+        if (other.tag == "RedPlayer")
+        {
+            target = null;
+
+        }
     }
 
     public override void AttackAction()
@@ -73,8 +61,6 @@ public class BlueEnemy : Enemy
                 RedEnemy enemyhealth = target.GetComponentInParent<RedEnemy>();
                 enemyhealth.OnDamage(damage);
             }
-            //PlayerStats playerHealth = player.GetComponent<PlayerStats>();
-            //playerHealth.health -= damage;
         }
         else if (transform.GetChild(0).tag == "BlueAp" || transform.GetChild(0).tag == "BlueCanon")
         {

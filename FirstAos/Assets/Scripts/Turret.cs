@@ -72,23 +72,6 @@ public class Turret : MonoBehaviour
         hpSlider.value = health / maxhealth;
         if (health <= 0f)
         {
-            
-            //RedEnemy redenemy = TurretDesScriptRed.GetComponent<RedEnemy>();
-            //BlueEnemy blueenemy = TurretDesScriptBlue.GetComponent<BlueEnemy>();
-
-            //    //blueenemy.TurretDestroy(true);
-            //    //redenemy.TurretDestroy(true);
-            //    //Enemy enemy = TurretDesScript.GetComponent<Enemy>();
-            //    //enemy.TurretDestory(true);
-            //    //enemy.isChase = false;
-
-            //redenemy.DetroyTurret(false);
-            //blueenemy.DetroyTurret(false);
-
-            //    redenemy.target = null;
-            //    blueenemy.target = null;
-
-            //    //gameObject.SetActive(false);
             Destroy(gameObject);
         }
         if (target == null)

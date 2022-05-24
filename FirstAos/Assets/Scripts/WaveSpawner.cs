@@ -14,10 +14,8 @@ public class WaveSpawner : MonoBehaviour
     public Transform redTeamSpawnPoint;
     public Transform blueTeamSpawnPoint;
 
-    //public float timeBetweenWaves = 5f;
     private float countdown = 2f;
 
-    //private int waveIndex = 1;
 
     void Update()
     {
@@ -32,7 +30,7 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             SpawnAdEnemy();
             yield return new WaitForSeconds(0.8f);
@@ -40,7 +38,7 @@ public class WaveSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        for (int j = 0; j < 1; j++)
+        for (int j = 0; j < 2; j++)
         {
             SpawnApEnemy();
             yield return new WaitForSeconds(1f);
@@ -56,7 +54,7 @@ public class WaveSpawner : MonoBehaviour
     void SpawnAdEnemy()
     {
         Instantiate(adEnemyPrefab, redTeamSpawnPoint.position, redTeamSpawnPoint.rotation);
-        //Instantiate(adEnemyPrefabBlue, blueTeamSpawnPoint.position, blueTeamSpawnPoint.rotation);
+        Instantiate(adEnemyPrefabBlue, blueTeamSpawnPoint.position, blueTeamSpawnPoint.rotation);
     }
 
     void SpawnApEnemy()

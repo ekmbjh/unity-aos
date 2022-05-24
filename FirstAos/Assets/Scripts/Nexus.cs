@@ -9,13 +9,11 @@ public class Nexus : MonoBehaviour
     public float maxhealth = 100f;
 
     public Slider slider;
-    // Start is called before the first frame update
     void Start()
     {
         health = maxhealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
         slider.value = health / maxhealth;

@@ -42,7 +42,6 @@ public class RedEnemy : Enemy
 
     void OnTriggerExit(Collider other)
     {
-        // 플레이어가 멀어지면 타겟을 웨이포인트로 변경하여 기존 이동경로로 복귀
         if (other.tag == "BluePlayer")
         {
             target = null;
@@ -79,8 +78,7 @@ public class RedEnemy : Enemy
                 BlueEnemy enemyhealth = target.GetComponentInParent<BlueEnemy>();
                 enemyhealth.OnDamage(damage);
             }
-            //PlayerStats playerHealth = player.GetComponent<PlayerStats>();
-            //playerHealth.health -= damage;
+
         }
         else if (transform.GetChild(0).tag == "RedAp" || transform.GetChild(0).tag == "RedCanon")
         {
@@ -97,21 +95,7 @@ public class RedEnemy : Enemy
     {
         enemiesIndex++;
         target = enemies[enemiesIndex].transform;
-        //foreach (GameObject otherEnemy in otherEnemies)
-        //{
-        //    distanceToEnemy = Vector3.Distance(otherEnemy.transform.position, transform.position);
-        //    if (distanceToEnemy < shortestDistance)
-        //    {
-        //        shortestDistance = distanceToEnemy;
-        //        nearestEnemy = otherEnemy;
-        //    }
-        //}
-        //target = nearestEnemy.transform;
 
-        //if (nearestEnemy != null && shortestDistance <= range)
-        //{
-        //    target = nearestEnemy.transform;
-        //}
     }
     public void DetroyTurret(bool isDestroy)
     {

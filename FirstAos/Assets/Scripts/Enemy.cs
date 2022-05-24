@@ -67,7 +67,6 @@ public class Enemy : MonoBehaviour
     public void Update()
     {
         slider.value = health / maxhealth;
-        //rigidbody.velocity = Vector3.zero;
         if (isDie)
         {
             return;
@@ -79,15 +78,9 @@ public class Enemy : MonoBehaviour
         }
         if (target == null && !isChase)
         {
-            //isChase = false;
             BackToLoad();
         }
-        //else if (target == null && enemies != null)
-        //{
-        //    isChase = false;
-        //    print("target null , enemy null");
-        //    FindNewTarget();
-        //}
+
         if (!isChase)
         {
             FollowTheLoad();
@@ -138,12 +131,7 @@ public class Enemy : MonoBehaviour
         {
             isChase = false;
         }
-        //else
-        //{
-        //    print("move else");
-        //    agent.SetDestination(direction);
-        //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
-        //}
+
     }
 
     public virtual void AttackAction()
@@ -155,34 +143,12 @@ public class Enemy : MonoBehaviour
     {
         Vector3 enemydir = new Vector3(target.position.x, transform.position.y, target.position.z);
         transform.LookAt(enemydir);
-        //try
-        //{
-        //    Vector3 enemydir = new Vector3(target.position.x, transform.position.y, target.position.z);
-        //    transform.LookAt(enemydir);
-        //}
-        //catch
-        //{
-        //    isChase = false;
-        //}
-        // enemy가 이동할 방향
-        //Vector3 dir = transform.position - target.position;
-        //dir.y = 0f;
-        // enemy를 이동
-        // Space.World(월드 좌표 기준), Space.Self(오브젝트의 좌표 기준)
-        //transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-
-        // 목표로 하는 Waypoint와의 거리가 1이하라면 다음 이동 목표 할당
         if (Vector3.Distance(transform.position, target.position) <= 1.5f)
         {
             GetNextWayPoint();
         }
         if (agent.enabled)
             agent.SetDestination(target.position);
-        //if (agent.enabled)
-        //{
-        //    //Debug.DrawLine(transform.position, target.position);
-        //}
     }
     void GetNextWayPoint()
     {
@@ -244,13 +210,3 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 }
-//if (Physics.SphereCast(transform.position, 5f, Vector3.up, out RaycastHit hitinfo, 0.1f, LayerMask.GetMask("Player")))
-//{
-//    Debug.Log("Find Player");
-//    StopCoroutine(FollowTheLoad());
-//    //StartCoroutine(MoveToPlayer());
-//}
-//else
-//{
-//    StartCoroutine(FollowTheLoad());
-//}

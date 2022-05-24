@@ -69,17 +69,6 @@ public class Movement : MonoBehaviour
                             StartCoroutine(AttackGo(hitInfo.transform));
                         }
                     }
-                    else
-                    {
-                        //movePoint = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
-                    }
-                }
-                else
-                {
-
-                    //movePoint = new Vector3(hitInfo.point.x, 0, hitInfo.point.z);
-
-
                 }
             }
         }
@@ -121,16 +110,9 @@ public class Movement : MonoBehaviour
     {
         attackCount = 2f;
         RedEnemy enemy = _enemy.GetComponent<RedEnemy>();
-        //if (enemy.health <= 0)
-        //{
-        //    Debug.Log("health 0");
-        //    stats.exp += enemy.exp;
-        //}
+
         Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
         transform.LookAt(_enemy);
-        //if (dir != Vector3.zero)
-        //    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotationSpeed);
-
         animator.SetBool("isAttack", true);
         enemy.OnDamage(damage);
         yield return new WaitForSeconds(1f);
@@ -142,7 +124,6 @@ public class Movement : MonoBehaviour
     void Move()
     {
         updateMovePoint = (movePoint - transform.position).normalized * speed;
-        //transform.Translate(updateMovePoint.normalized * speed * Time.deltaTime, Space.World);
 
         Vector3 dir = new Vector3(movePoint.x, transform.position.y, movePoint.z) - transform.position;
         if (dir != Vector3.zero)
